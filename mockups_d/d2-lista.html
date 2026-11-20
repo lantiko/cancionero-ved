@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>D2 — Lista (accesible por deslizamiento)</title>
+<link rel="stylesheet" href="../estilos.css">
+<style>
+  .wrap { max-width: 420px; margin: 0 auto; background: var(--tarjeta); border-radius: 24px; overflow: hidden; box-shadow: 0 20px 60px rgba(0,0,0,.2); border: 1px solid var(--borde); }
+  .phone-bar { height: 44px; display: flex; align-items: center; justify-content: space-between; padding: 0 20px; font-size: 12px; font-weight: 600; color: var(--muted); border-bottom: 1px solid var(--borde); }
+  .app-bar { height: 52px; display: flex; align-items: center; justify-content: space-between; padding: 0 16px; border-bottom: 1px solid var(--borde); }
+  .app-bar .back { font-size: 18px; color: var(--muted); }
+  .app-bar .title { font-family: Georgia, serif; font-size: 18px; color: var(--subrayado); }
+  .screen { padding: 16px; }
+  .search { height: 40px; border-radius: 12px; background: var(--fondo); border: 1px solid var(--borde); display: flex; align-items: center; gap: 8px; padding: 0 12px; color: var(--muted); font-size: 13px; margin-bottom: 10px; }
+  .chips { display: flex; gap: 6px; flex-wrap: wrap; margin-bottom: 12px; }
+  .chip { height: 28px; padding: 0 10px; border-radius: 999px; background: var(--fondo); border: 1px solid var(--borde); font-size: 11px; color: var(--muted); display: inline-flex; align-items: center; }
+  .chip.on { background: var(--subrayado); color: #FBEFDF; border-color: var(--subrayado); }
+  .list-card { background: var(--fondo); border: 1px solid var(--borde); border-radius: 10px; padding: 10px; margin-bottom: 6px; }
+  .list-card .title { font-family: Georgia, serif; font-size: 13px; color: var(--subrayado); margin-bottom: 2px; }
+  .list-card .meta { font-size: 10px; color: var(--muted); }
+  .hint { text-align: center; font-size: 11px; color: var(--muted); padding: 12px 0; border-top: 1px solid var(--borde); margin-top: 8px; }
+  .bottom-nav { height: 60px; display: flex; align-items: center; justify-content: space-around; border-top: 1px solid var(--borde); background: var(--tarjeta); }
+  .nav-item { display: flex; flex-direction: column; align-items: center; gap: 2px; font-size: 9px; color: var(--muted); }
+  .nav-item.on { color: var(--acento); }
+  .nav-item .ic { font-size: 16px; }
+  .design-label { text-align: center; padding: 10px; font-family: Georgia, serif; font-size: 14px; color: var(--subrayado); background: var(--fondo); border-top: 1px solid var(--borde); }
+</style>
+</head>
+<body data-theme="claro">
+<div class="wrap">
+  <div class="phone-bar"><span>9:41</span><span>📶 🔋</span></div>
+  <div class="app-bar"><span class="back">←</span><span class="title">Lista de canciones</span></div>
+  <div class="screen">
+    <div class="search">🔍 Buscar título o letra...</div>
+    <div class="chips"><span class="chip on">Todos</span><span class="chip">Favoritos ★</span><span class="chip">Por tema</span></div>
+    <div class="list-card"><div class="title">Bendeciré al Señor</div><div class="meta">Re · Zamba · Litúrgico</div></div>
+    <div class="list-card"><div class="title">Alabaré</div><div class="meta">Sol · Carnavalito · Religioso</div></div>
+    <div class="list-card"><div class="title">Santo, Santo</div><div class="meta">Do · Ritmo libre · Litúrgico</div></div>
+    <div class="hint">Tocá una canción para verla</div>
+  </div>
+  <div class="bottom-nav">
+    <div class="nav-item on"><span class="ic">🎵</span><span>Canción</span></div>
+    <div class="nav-item"><span class="ic">📋</span><span>Listas</span></div>
+  </div>
+  <div class="design-label">D2 — Lista (accesible por deslizamiento)</div>
+</div>
+<script>
+  document.addEventListener('DOMContentLoaded', () => {
+    const saved = localStorage.getItem('ved_theme')||'claro';
+    document.body.setAttribute('data-theme', saved);
+  });
+</script>
+</body>
+</html>

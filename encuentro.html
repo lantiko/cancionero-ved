@@ -1,0 +1,201 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Cancionero VeD — Encuentro</title>
+<link rel="stylesheet" href="estilos.css">
+<style>
+  .encuentro-wrap { max-width: 700px; margin: 0 auto; }
+  .encuentro-wrap h1 { font-family: Georgia, serif; font-size: 28px; margin-bottom: 6px; color: var(--subrayado); }
+  .encuentro-wrap .sub { color: var(--muted); font-size: 14px; margin-bottom: 24px; }
+  .file-list { list-style: none; padding: 0; margin: 0; }
+  .file-item {
+    display: flex; align-items: center; gap: 12px;
+    padding: 12px 14px; margin-bottom: 8px;
+    background: var(--tarjeta); border: 1px solid var(--borde);
+    border-radius: 10px;
+  }
+  .file-item .icon { font-size: 24px; flex: 0 0 32px; text-align: center; }
+  .file-item .info { flex: 1; min-width: 0; }
+  .file-item .name { font-size: 14px; font-weight: 600; color: var(--texto); }
+  .file-item .meta { font-size: 11px; color: var(--muted); margin-top: 2px; }
+  .file-item .btn-dl {
+    height: 32px; padding: 0 12px; border-radius: 8px;
+    background: var(--subrayado); color: #FBEFDF;
+    font-size: 12px; font-weight: 600; border: none; cursor: pointer;
+    display: inline-flex; align-items: center; gap: 4px; flex: 0 0 auto;
+  }
+  .file-item .btn-dl:hover { opacity: 0.85; }
+  .qr-section {
+    margin-top: 24px; padding: 16px;
+    background: var(--tarjeta); border: 1px solid var(--borde);
+    border-radius: 12px; text-align: center;
+  }
+  .qr-section h3 { font-family: Georgia, serif; font-size: 16px; margin-bottom: 8px; color: var(--subrayado); }
+  .qr-section p { font-size: 12px; color: var(--muted); margin-bottom: 12px; }
+  .qr-code { display: inline-block; padding: 8px; background: #fff; border-radius: 8px; }
+  .expiry {
+    margin-top: 16px; padding: 10px 14px;
+    background: var(--fondo); border: 1px solid var(--borde);
+    border-radius: 8px; font-size: 12px; color: var(--muted); text-align: center;
+  }
+  .expiry .date { font-weight: 700; color: var(--acento); }
+  .password-gate {
+    position: fixed; inset: 0; background: var(--fondo);
+    display: flex; align-items: center; justify-content: center;
+    z-index: 100; flex-direction: column; gap: 12px;
+  }
+  .password-gate h2 { font-family: Georgia, serif; font-size: 22px; color: var(--subrayado); }
+  .password-gate input {
+    height: 40px; width: 240px; border-radius: 10px;
+    border: 1px solid var(--borde); padding: 0 12px;
+    font-size: 14px; text-align: center;
+  }
+  .password-gate button {
+    height: 40px; width: 240px; border-radius: 10px;
+    background: var(--subrayado); color: #FBEFDF;
+    font-size: 14px; font-weight: 600; border: none; cursor: pointer;
+  }
+  .password-gate .error { color: #C0392B; font-size: 12px; }
+  .hidden { display: none !important; }
+</style>
+</head>
+<body data-theme="claro">
+<!-- Password gate (optional) -->
+<div class="password-gate" id="password-gate">
+  <h2>Encuentro privado</h2>
+  <p style="color:var(--muted);font-size:13px;">Ingresá la contraseña para acceder</p>
+  <input type="password" id="pass-input" placeholder="Contraseña">
+  <button onclick="checkPassword()">Acceder</button>
+  <div class="error hidden" id="pass-error">Contraseña incorrecta</div>
+</div>
+
+<div class="app hidden" id="main-content">
+  <aside class="sidebar">
+    <div class="header"><h1><span class="short">VeD</span> Encuentro</h1></div>
+    <div class="theme-bar" id="theme-bar"></div>
+    <div style="font-size:13px;color:var(--muted);margin-top:12px;">
+      Archivos del encuentro.<br>
+      Escaneá el QR para acceder.
+    </div>
+  </aside>
+  <main class="main">
+    <div class="encuentro-wrap">
+      <h1>Archivos del encuentro</h1>
+      <p class="sub">Descargá los archivos que necesitás para el encuentro. También podés escanear el QR para acceder desde tu celular.</p>
+
+      <ul class="file-list" id="file-list">
+        <!-- Los archivos se agregan acá. Formato:
+        <li class="file-item">
+          <div class="icon">📄</div>
+          <div class="info">
+            <div class="name">Nombre del archivo.pdf</div>
+            <div class="meta">PDF · 2.3 MB</div>
+          </div>
+          <a href="encuentro/archivo.pdf" download class="btn-dl">Descargar</a>
+        </li>
+        -->
+        <li class="file-item">
+          <div class="icon">📄</div>
+          <div class="info">
+            <div class="name">Lecturas del día.pdf</div>
+            <div class="meta">PDF · 1.2 MB</div>
+          </div>
+          <a href="encuentro/lecturas.pdf" download class="btn-dl">Descargar</a>
+        </li>
+        <li class="file-item">
+          <div class="icon">📄</div>
+          <div class="info">
+            <div class="name">Hoja de trabajo.docx</div>
+            <div class="meta">DOCX · 450 KB</div>
+          </div>
+          <a href="encuentro/hoja-trabajo.docx" download class="btn-dl">Descargar</a>
+        </li>
+        <li class="file-item">
+          <div class="icon">🎵</div>
+          <div class="info">
+            <div class="name">Canciones del encuentro.txt</div>
+            <div class="meta">TXT · 12 KB</div>
+          </div>
+          <a href="encuentro/canciones.txt" download class="btn-dl">Descargar</a>
+        </li>
+      </ul>
+
+      <div class="qr-section">
+        <h3>Compartir por QR</h3>
+        <p>Escaneá este QR para acceder desde tu celular</p>
+        <div class="qr-code" id="qr-code"></div>
+      </div>
+
+      <div class="expiry">
+        Esta página estará disponible hasta el <span class="date" id="expiry-date"></span>
+      </div>
+    </div>
+  </main>
+</div>
+
+<script>
+  // ---------- Password gate ----------
+  // La contraseña está ofuscada (no legible a simple vista)
+  const _k = [118, 101, 100, 50, 48, 50, 54]; // "ved2026" — cambiar por la contraseña real
+  function checkPassword() {
+    const input = document.getElementById('pass-input').value;
+    if (input === String.fromCharCode(..._k)) {
+      document.getElementById('password-gate').classList.add('hidden');
+      document.getElementById('main-content').classList.remove('hidden');
+      localStorage.setItem('ved_encuentro_auth', '1');
+    } else {
+      document.getElementById('pass-error').classList.remove('hidden');
+    }
+  }
+  // Si ya se autenticó antes, saltar el gate
+  if (localStorage.getItem('ved_encuentro_auth') === '1') {
+    document.getElementById('password-gate').classList.add('hidden');
+    document.getElementById('main-content').classList.remove('hidden');
+  }
+
+  // ---------- Expiry date (7 days from now) ----------
+  const expiry = new Date();
+  expiry.setDate(expiry.getDate() + 7);
+  document.getElementById('expiry-date').textContent = expiry.toLocaleDateString('es-AR', {
+    weekday: 'long', year: 'numeric', month: 'long', day: 'numeric'
+  });
+
+  // ---------- Theme bar ----------
+  const THEMES = [
+    { id: 'claro', label: 'Claro' },
+    { id: 'crema', label: 'Crema' },
+    { id: 'sepia', label: 'Sepia' },
+    { id: 'atardecer', label: 'Atardecer' },
+    { id: 'oscuro', label: 'Oscuro' },
+  ];
+  let currentTheme = localStorage.getItem('ved_theme') || 'claro';
+  function applyTheme(id) {
+    currentTheme = id;
+    document.body.setAttribute('data-theme', id);
+    document.querySelectorAll('.theme-btn').forEach(b => b.classList.toggle('active', b.dataset.theme === id));
+    localStorage.setItem('ved_theme', id);
+  }
+  const bar = document.getElementById('theme-bar');
+  THEMES.forEach(t => {
+    const btn = document.createElement('button');
+    btn.className = 'theme-btn';
+    btn.dataset.theme = t.id;
+    btn.textContent = t.label;
+    btn.onclick = () => applyTheme(t.id);
+    bar.appendChild(btn);
+  });
+  applyTheme(currentTheme);
+
+  // ---------- QR Code (simple, using a free API) ----------
+  // Genera un QR con la URL actual de la página
+  const qrUrl = encodeURIComponent(window.location.href);
+  const qrImg = document.createElement('img');
+  qrImg.src = 'https://api.qrserver.com/v1/create-qr-code/?size=180x180&data=' + qrUrl;
+  qrImg.alt = 'QR de acceso';
+  qrImg.style.borderRadius = '4px';
+  document.getElementById('qr-code').appendChild(qrImg);
+</script>
+</body>
+</html>

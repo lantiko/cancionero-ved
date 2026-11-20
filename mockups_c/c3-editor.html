@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>C3 — Editor</title>
+<link rel="stylesheet" href="../estilos.css">
+<style>
+  .wrap { max-width: 420px; margin: 0 auto; background: var(--tarjeta); border-radius: 24px; overflow: hidden; box-shadow: 0 20px 60px rgba(0,0,0,.2); border: 1px solid var(--borde); }
+  .phone-bar { height: 44px; display: flex; align-items: center; justify-content: space-between; padding: 0 20px; font-size: 12px; font-weight: 600; color: var(--muted); border-bottom: 1px solid var(--borde); }
+  .app-bar { height: 46px; display: flex; align-items: center; justify-content: space-between; padding: 0 16px; border-bottom: 1px solid var(--borde); }
+  .app-bar .back { font-size: 16px; color: var(--muted); }
+  .app-bar .title { font-family: Georgia, serif; font-size: 14px; color: var(--subrayado); }
+  .app-bar .btns { display: flex; gap: 4px; }
+  .app-bar .btn { height: 26px; padding: 0 8px; border-radius: 6px; border: none; font-size: 9px; font-weight: 600; background: var(--subrayado); color: #FBEFDF; }
+  .app-bar .btn.ghost { background: var(--fondo); border: 1px solid var(--borde); color: var(--muted); }
+  .screen { padding: 14px 16px; }
+  .editor-box { background: var(--fondo); border: 1px solid var(--borde); border-radius: 8px; padding: 10px; margin-bottom: 8px; font-size: 11px; line-height: 1.5; color: var(--texto); min-height: 70px; }
+  .chord-palette { display: flex; gap: 4px; flex-wrap: wrap; margin: 6px 0; }
+  .chord-btn { height: 24px; padding: 0 6px; border-radius: 6px; background: var(--tarjeta); border: 1px solid var(--borde); font-size: 9px; font-weight: 600; color: var(--subrayado); }
+  .hint { font-size: 9px; color: var(--muted); margin: 4px 0; }
+  .metadatos { background: var(--fondo); border: 1px solid var(--borde); border-radius: 8px; padding: 8px; margin-top: 8px; }
+  .metadatos .title { font-size: 10px; font-weight: 700; color: var(--muted); margin-bottom: 6px; }
+  .form-group { margin-bottom: 4px; }
+  .form-label { font-size: 8px; color: var(--muted); margin-bottom: 1px; }
+  .form-input { width: 100%; height: 22px; border: 1px solid var(--borde); border-radius: 4px; background: var(--tarjeta); padding: 0 6px; font-size: 9px; color: var(--texto); }
+  .form-row { display: flex; gap: 4px; margin-bottom: 4px; }
+  .toggle-row { display: flex; align-items: center; gap: 4px; margin: 4px 0; font-size: 9px; color: var(--muted); }
+  .toggle { width: 28px; height: 16px; border-radius: 8px; background: var(--borde); position: relative; }
+  .toggle.on { background: var(--acento); }
+  .toggle::after { content: ''; position: absolute; top: 2px; left: 2px; width: 12px; height: 12px; border-radius: 50%; background: #fff; }
+  .toggle.on::after { left: 14px; }
+  .design-label { text-align: center; padding: 10px; font-family: Georgia, serif; font-size: 14px; color: var(--subrayado); background: var(--fondo); border-top: 1px solid var(--borde); }
+</style>
+</head>
+<body data-theme="claro">
+<div class="wrap">
+  <div class="phone-bar"><span>9:41</span><span>📶 🔋</span></div>
+  <div class="app-bar"><span class="back">←</span><span class="title">Editar: Bendeciré al Señor</span><div class="btns"><span class="btn">Guardar</span><span class="btn ghost">Cancelar</span></div></div>
+  <div class="screen">
+    <div class="editor-box">
+      Bendeciré al Señor en<br>todo tiempo, en todo...<br>Gloria a Dios en las...<br>[Refrán]<br>Bendeciré, bendeciré...
+    </div>
+    <div class="chord-palette">
+      <span class="chord-btn">Re</span><span class="chord-btn">Mi</span><span class="chord-btn">Fa</span><span class="chord-btn">Sol</span><span class="chord-btn">La</span><span class="chord-btn">Si</span><span class="chord-btn">Do#</span><span class="chord-btn">Re#</span><span class="chord-btn">Fa#</span><span class="chord-btn">Sol#</span><span class="chord-btn">La#</span>
+    </div>
+    <div class="hint">Seleccioná sílaba → tocá acorde</div>
+    <div class="metadatos">
+      <div class="title">Metadatos</div>
+      <div class="form-group"><div class="form-label">Título</div><input class="form-input" value="Bendeciré al Señor"></div>
+      <div class="form-row">
+        <div style="flex:1;"><div class="form-label">Tono</div><input class="form-input" value="Re"></div>
+        <div style="flex:1;"><div class="form-label">Ritmo</div><input class="form-input" value="Zamba"></div>
+      </div>
+      <div class="form-row">
+        <div style="flex:1;"><div class="form-label">Tag</div><input class="form-input" value="Litúrgico"></div>
+        <div style="flex:1;"><div class="form-label">Tiempo</div><input class="form-input" value="Ordinario"></div>
+      </div>
+      <div class="form-group"><div class="form-label">Autor</div><input class="form-input" value=""></div>
+      <div class="form-group"><div class="form-label">Referencia</div><input class="form-input" value="Sal 33, 2-3"></div>
+      <div class="form-group"><div class="form-label">Notas</div><input class="form-input" value=""></div>
+      <div class="form-row">
+        <div class="toggle-row"><div class="toggle on"></div><span>Favorito</span></div>
+        <div class="toggle-row"><span>Nº SR: 12</span></div>
+        <div class="toggle-row"><span>Nº UCN: 45</span></div>
+      </div>
+      <div class="form-row">
+        <div style="flex:1;"><div class="form-label">Voz default</div><input class="form-input" value="Varón bajo"></div>
+      </div>
+    </div>
+  </div>
+  <div class="design-label">C3 — Editor (pantalla completa)</div>
+</div>
+<script>
+  document.addEventListener('DOMContentLoaded', () => {
+    const saved = localStorage.getItem('ved_theme')||'claro';
+    document.body.setAttribute('data-theme', saved);
+  });
+</script>
+</body>
+</html>

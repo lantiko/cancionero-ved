@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>C2 — Vista de canción (modal)</title>
+<link rel="stylesheet" href="../estilos.css">
+<style>
+  .wrap { max-width: 420px; margin: 0 auto; background: var(--tarjeta); border-radius: 24px; overflow: hidden; box-shadow: 0 20px 60px rgba(0,0,0,.2); border: 1px solid var(--borde); }
+  .phone-bar { height: 44px; display: flex; align-items: center; justify-content: space-between; padding: 0 20px; font-size: 12px; font-weight: 600; color: var(--muted); border-bottom: 1px solid var(--borde); }
+  .overlay { background: rgba(0,0,0,.4); padding: 40px 16px 16px; min-height: 600px; }
+  .modal { background: var(--tarjeta); border-radius: 16px; padding: 14px; border: 1px solid var(--borde); }
+  .modal .close { float: right; font-size: 14px; color: var(--muted); }
+  .modal .title { font-family: Georgia, serif; font-size: 16px; color: var(--subrayado); margin-bottom: 4px; }
+  .modal .meta { font-size: 10px; color: var(--muted); margin-bottom: 8px; }
+  .tools { display: flex; gap: 4px; margin: 6px 0; flex-wrap: wrap; }
+  .tool { height: 24px; padding: 0 8px; border-radius: 6px; background: var(--fondo); border: 1px solid var(--borde); display: flex; align-items: center; justify-content: center; font-size: 9px; color: var(--muted); }
+  .tool.on { background: var(--subrayado); color: #FBEFDF; border-color: var(--subrayado); }
+  .lyrics .ln { display: flex; flex-wrap: wrap; margin-bottom: 4px; }
+  .lyrics .p { display: inline-flex; flex-direction: column; margin-right: 2px; }
+  .lyrics .c { font-size: 9px; font-weight: 700; color: var(--acorde); height: 12px; }
+  .lyrics .t { font-size: 12px; color: var(--texto); }
+  .chorus { border-left: 2px solid var(--subrayado); padding: 4px 6px; margin: 2px 0; background: rgba(18,41,63,.04); border-radius: 0 6px 6px 0; }
+  .btn-row { display: flex; gap: 4px; margin: 8px 0; flex-wrap: wrap; }
+  .btn { height: 26px; padding: 0 8px; border-radius: 6px; border: none; font-size: 9px; font-weight: 600; display: inline-flex; align-items: center; gap: 3px; cursor: pointer; }
+  .btn.primary { background: var(--subrayado); color: #FBEFDF; }
+  .btn.ghost { background: var(--fondo); border: 1px solid var(--borde); color: var(--muted); }
+  .meta-row { font-size: 10px; color: var(--muted); margin: 6px 0; }
+  .metadatos { background: var(--fondo); border: 1px solid var(--borde); border-radius: 8px; padding: 8px; margin-top: 8px; }
+  .metadatos .title { font-size: 10px; font-weight: 700; color: var(--muted); margin-bottom: 6px; }
+  .form-group { margin-bottom: 4px; }
+  .form-label { font-size: 8px; color: var(--muted); margin-bottom: 1px; }
+  .form-input { width: 100%; height: 22px; border: 1px solid var(--borde); border-radius: 4px; background: var(--tarjeta); padding: 0 6px; font-size: 9px; color: var(--texto); }
+  .form-row { display: flex; gap: 4px; margin-bottom: 4px; }
+  .design-label { text-align: center; padding: 10px; font-family: Georgia, serif; font-size: 14px; color: var(--subrayado); background: var(--fondo); border-top: 1px solid var(--borde); }
+</style>
+</head>
+<body data-theme="claro">
+<div class="wrap">
+  <div class="phone-bar"><span>9:41</span><span>📶 🔋</span></div>
+  <div class="overlay">
+    <div class="modal">
+      <span class="close">✕</span>
+      <div class="title">Bendeciré al Señor</div>
+      <div class="meta">Re · Zamba · Litúrgico · ★</div>
+      <div class="tools"><span class="tool on">DoM/C+</span><span class="tool">Ocultar</span><span class="tool">🖨</span><span class="tool">+</span><span class="tool">−</span></div>
+      <div class="lyrics">
+        <div class="ln"><span class="p"><span class="c">Re</span><span class="t">Bendeciré al </span></span><span class="p"><span class="c">Sol</span><span class="t">Señor, </span></span></div>
+        <div class="ln"><span class="p"><span class="c">Re</span><span class="t">en todo </span></span><span class="p"><span class="c">La</span><span class="t">tiempo.</span></span></div>
+        <div class="chorus">
+          <div class="ln"><span class="p"><span class="c">Do</span><span class="t">Gloria, </span></span><span class="p"><span class="c">Re</span><span class="t">gloria </span></span><span class="p"><span class="c">Mi</span><span class="t">a Dios.</span></span></div>
+        </div>
+      </div>
+      <div class="btn-row"><span class="btn primary">Editar</span><span class="btn ghost">← Ant</span><span class="btn ghost">Sig →</span></div>
+      <div class="meta-row">Voz: Varón bajo ▼ · Ref: Sal 33, 2-3</div>
+      <div class="metadatos">
+        <div class="title">Metadatos</div>
+        <div class="form-group"><div class="form-label">Título</div><input class="form-input" value="Bendeciré al Señor"></div>
+        <div class="form-row">
+          <div style="flex:1;"><div class="form-label">Tono</div><input class="form-input" value="Re"></div>
+          <div style="flex:1;"><div class="form-label">Ritmo</div><input class="form-input" value="Zamba"></div>
+        </div>
+        <div class="form-group"><div class="form-label">Tag</div><input class="form-input" value="Litúrgico"></div>
+      </div>
+    </div>
+  </div>
+  <div class="design-label">C2 — Vista de canción (modal)</div>
+</div>
+<script>
+  document.addEventListener('DOMContentLoaded', () => {
+    const saved = localStorage.getItem('ved_theme')||'claro';
+    document.body.setAttribute('data-theme', saved);
+  });
+</script>
+</body>
+</html>

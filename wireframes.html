@@ -1,0 +1,629 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Wireframes — Cancionero VeD</title>
+<style>
+  body { background: #1a1a2e; color: #eee; font-family: system-ui, sans-serif; margin: 0; padding: 20px; }
+  h1 { font-family: Georgia, serif; font-size: 28px; margin-bottom: 8px; color: #C87A28; }
+  .sub { color: #aaa; font-size: 14px; margin-bottom: 30px; }
+  .design { margin-bottom: 40px; }
+  .design h2 { font-family: Georgia, serif; font-size: 22px; color: #5B9BD5; margin-bottom: 4px; }
+  .design .desc { color: #aaa; font-size: 13px; margin-bottom: 16px; }
+  .screen { margin-bottom: 20px; }
+  .screen h3 { font-size: 14px; color: #E8A45E; margin-bottom: 6px; }
+  pre {
+    background: #0f0f23; border: 1px solid #333; border-radius: 8px;
+    padding: 12px; font-family: "Consolas", "Courier New", monospace;
+    font-size: 11px; line-height: 1.3; overflow-x: auto;
+    color: #e0e0e0; white-space: pre; margin: 0;
+  }
+  .grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(400px, 1fr)); gap: 16px; }
+  @media (max-width: 900px) { .grid { grid-template-columns: 1fr; } }
+</style>
+</head>
+<body>
+<h1>Wireframes — 4 Diseños de UI</h1>
+<p class="sub">Bocetos en ASCII del documento "4 Diseños de UI para Cancionero VeD". Fuente monoespaciada.</p>
+
+<!-- ============ DISEÑO A ============ -->
+<div class="design">
+  <h2>Diseño A — "Lista primero"</h2>
+  <p class="desc">La lista es el centro. Todo se accede desde ella. Navegación lineal: Lista → Canción → Editor. Ideal para uso rápido, una mano.</p>
+  <div class="grid">
+    <div class="screen"><h3>1. Lista de canciones (pantalla principal)</h3><pre>
+┌─────────────────────────────────────┐
+│  VeD Cancionero              [🔍]   │
+│  ┌─────────────────────────────┐   │
+│  │ Buscar título o letra...    │   │
+│  └─────────────────────────────┘   │
+│  [Todos] [Favoritos ★] [Por tema]  │
+│                                     │
+│  ┌─────────────────────────────┐   │
+│  │ 🎵 Bendeciré al Señor       │   │
+│  │    Re · Zamba · Litúrgico   │   │
+│  └─────────────────────────────┘   │
+│  ┌─────────────────────────────┐   │
+│  │ 🎵 Alabaré                  │   │
+│  │    Sol · Carnavalito · Rel. │   │
+│  └─────────────────────────────┘   │
+│  ┌─────────────────────────────┐   │
+│  │ 🎵 Santo, Santo             │   │
+│  │    Do · Ritmo libre · Lit.  │   │
+│  └─────────────────────────────┘   │
+│                                     │
+│  [☰]  [🎵 Canciones]  [📋 Listas]  │
+└─────────────────────────────────────┘</pre></div>
+    <div class="screen"><h3>2. Vista de canción</h3><pre>
+┌─────────────────────────────────────┐
+│  [←] Bendeciré al Señor            │
+│  Re · Zamba · Litúrgico · ★        │
+│                                     │
+│  [DoM/C+] [Ocultar] [🖨] [+] [-]   │
+│                                     │
+│  ┌─────────────────────────────┐   │
+│  │   Re        Sol       La    │   │
+│  │   Ben-de-ci-ré al Se-ñor   │   │
+│  │   Re        Sol       La    │   │
+│  │   en to-do tiem-po, en...   │   │
+│  │                             │   │
+│  │   Mi        La      Re      │   │
+│  │   Glo-ria a Dios en las...   │   │
+│  │                             │   │
+│  │   [Refrán]                  │   │
+│  │   Re        Sol       La    │   │
+│  │   Ben-de-ci-ré, ben-de-...  │   │
+│  └─────────────────────────────┘   │
+│                                     │
+│  Voz: [Varón bajo ▼]                │
+│  Ref: Sal 33, 2-3 · Autor: [nombre] │
+│  Notas: [texto libre]               │
+│                                     │
+│  [← Anterior] [Siguiente →]         │
+└─────────────────────────────────────┘</pre></div>
+    <div class="screen"><h3>3. Editor</h3><pre>
+┌─────────────────────────────────────┐
+│  [←] Editar: Bendeciré al Señor    │
+│  [Guardar] [Cancelar]              │
+│                                     │
+│  ┌─────────────────────────────┐   │
+│  │   Bendeciré al Señor en     │   │
+│  │   todo tiempo, en todo...   │   │
+│  │   Gloria a Dios en las...   │   │
+│  │   [Refrán]                  │   │
+│  │   Bendeciré, bendeciré...   │   │
+│  └─────────────────────────────┘   │
+│                                     │
+│  Acordes: [Re] [Mi] [Fa] [Sol]...  │
+│  Seleccioná sílaba → tocá acorde   │
+│                                     │
+│  Metadatos:                         │
+│  Título: [Bendeciré al Señor]      │
+│  Tono: [Re ▼]  Ritmo: [Zamba ▼]    │
+│  Tag: [Litúrgico ▼]                │
+│  Autor: [________]                 │
+│  Link: [________]                  │
+│  Referencia: [Sal 33, 2-3]         │
+│  Notas: [________]                 │
+│  Favorito: [★]  Nº SR: [12]        │
+│  Nº UCN: [45]  Tiempo: [Ord. ▼]   │
+│  Voz default: [Varón bajo ▼]       │
+└─────────────────────────────────────┘</pre></div>
+    <div class="screen"><h3>4. Setlists</h3><pre>
+┌─────────────────────────────────────┐
+│  [←] Listas de canciones           │
+│  [Nueva lista]                      │
+│                                     │
+│  ┌─────────────────────────────┐   │
+│  │ 📋 Misa del domingo         │   │
+│  │    12 canciones · 35 min    │   │
+│  └─────────────────────────────┘   │
+│  ┌─────────────────────────────┐   │
+│  │ 📋 Misa carismática         │   │
+│  │    8 canciones · 25 min     │   │
+│  └─────────────────────────────┘   │
+│  ┌─────────────────────────────┐   │
+│  │ 📋 Retiro de Adviento       │   │
+│  │    15 canciones · 45 min    │   │
+│  └─────────────────────────────┘   │
+│                                     │
+│  [☰]  [🎵 Canciones]  [📋 Listas]  │
+└─────────────────────────────────────┘</pre></div>
+    <div class="screen"><h3>5. Vista de setlist</h3><pre>
+┌─────────────────────────────────────┐
+│  [←] Misa del domingo              │
+│  [Editar] [Imprimir] [Exportar]    │
+│                                     │
+│  1. Entrada: Bendeciré al Señor     │
+│     Re · Zamba                      │
+│  2. Gloria: Santo, Santo            │
+│     Do · Ritmo libre                │
+│  3. Salmo: El Señor es mi pastor    │
+│     Sol · Canción                   │
+│  4. Ofertorio: Alabaré              │
+│     Sol · Carnavalito               │
+│  5. Comunión: Pan de vida           │
+│     Fa · Zamba                      │
+│  6. Salida: Cristo vive             │
+│     Re · Marcha                     │
+│                                     │
+│  + Agregar canción                  │
+│  + Agregar nota libre               │
+│                                     │
+│  Duración: 35 min · Voz: Varón bajo │
+└─────────────────────────────────────┘</pre></div>
+    <div class="screen"><h3>6. Configuración</h3><pre>
+┌─────────────────────────────────────┐
+│  [←] Configuración                 │
+│                                     │
+│  Apariencia                         │
+│  Tema: [Claro ▼]                    │
+│  Zoom default: [100% ▼]            │
+│  Notación: [DoM ▼]                 │
+│  Ocultar acordes: [No ▼]            │
+│                                     │
+│  Voz                                │
+│  Voz default: [Varón bajo ▼]        │
+│                                     │
+│  Datos                              │
+│  Importar canciones: [Archivo]      │
+│  Exportar datos: [JSON]             │
+│  Backup: [Google Drive]             │
+│                                     │
+│  Acerca de                          │
+│  Versión: 0.1.0                     │
+│  Canciones: 26 (Santa Rita)         │
+│  Listas: 3                          │
+└─────────────────────────────────────┘</pre></div>
+  </div>
+</div>
+
+<!-- ============ DISEÑO B ============ -->
+<div class="design">
+  <h2>Diseño B — "Pantalla dividida"</h2>
+  <p class="desc">Lista y canción visibles al mismo tiempo (tablet). En móvil se apila. Navegación paralela. Ideal para tablet, ensayo, preparación.</p>
+  <div class="grid">
+    <div class="screen"><h3>1. Lista + Canción (tablet, landscape)</h3><pre>
+┌─────────────────────────────────────────────────────────┐
+│  VeD Cancionero                              [🔍] [⚙] │
+│  ┌──────────────────┬──────────────────────────────────┐│
+│  │ Lista de canciones│  Bendeciré al Señor            ││
+│  │                   │  Re · Zamba · Litúrgico · ★    ││
+│  │ [Buscar...]       │                                ││
+│  │                   │  [DoM/C+] [Ocultar] [🖨]       ││
+│  │ 🎵 Bendeciré...   │  ┌──────────────────────────┐  ││
+│  │ 🎵 Alabaré        │  │   Re        Sol       La  │  ││
+│  │ 🎵 Santo, Santo   │  │   Ben-de-ci-ré al Se-ñor │  ││
+│  │ 🎵 Pan de vida    │  │   Re        Sol       La  │  ││
+│  │ 🎵 Cristo vive    │  │   en to-do tiem-po...    │  ││
+│  │ 🎵 Gloria a Dios  │  │                           │  ││
+│  │ 🎵 Aleluya       │  │   Mi        La      Re    │  ││
+│  │ 🎵 Cordero de...  │  │   Glo-ria a Dios en...   │  ││
+│  │                   │  │                           │  ││
+│  │                   │  │   [Refrán]                │  ││
+│  │                   │  │   Re        Sol       La  │  ││
+│  │                   │  │   Ben-de-ci-ré, ben-de... │  ││
+│  │                   │  └──────────────────────────┘  ││
+│  │                   │                                ││
+│  │                   │  Voz: [Varón bajo ▼]           ││
+│  │                   │  Ref: Sal 33, 2-3              ││
+│  │                   │  [← Ant] [Sig →]               ││
+│  └──────────────────┴──────────────────────────────────┘│
+│  [☰]  [🎵 Canciones]  [📋 Listas]  [⚙ Config]        │
+└─────────────────────────────────────────────────────────┘</pre></div>
+    <div class="screen"><h3>2. Editor (tablet, landscape)</h3><pre>
+┌─────────────────────────────────────────────────────────┐
+│  VeD Cancionero                              [🔍] [⚙] │
+│  ┌──────────────────┬──────────────────────────────────┐│
+│  │ Lista de canciones│  Editor: Bendeciré al Señor    ││
+│  │                   │  [Guardar] [Cancelar]          ││
+│  │ [Buscar...]       │                                ││
+│  │                   │  ┌──────────────────────────┐  ││
+│  │ 🎵 Bendeciré...   │  │   Bendeciré al Señor en  │  ││
+│  │ 🎵 Alabaré        │  │   todo tiempo, en...     │  ││
+│  │ 🎵 Santo, Santo   │  │   Gloria a Dios en...    │  ││
+│  │                   │  │   [Refrán]               │  ││
+│  │                   │  │   Bendeciré, bendeciré.. │  ││
+│  │                   │  └──────────────────────────┘  ││
+│  │                   │                                ││
+│  │                   │  Acordes: [Re][Mi][Fa][Sol]... ││
+│  │                   │                                ││
+│  │                   │  Metadatos:                    ││
+│  │                   │  Título: [Bendeciré al Señor]  ││
+│  │                   │  Tono: [Re ▼] Ritmo: [Zamba ▼]││
+│  │                   │  Tag: [Litúrgico ▼]            ││
+│  │                   │  Autor: [________]             ││
+│  │                   │  Link: [________]              ││
+│  │                   │  Ref: [Sal 33, 2-3]            ││
+│  │                   │  Notas: [________]             ││
+│  │                   │  Favorito: [★] NºSR:[12]      ││
+│  │                   │  NºUCN:[45] Tiempo:[Ord. ▼]   ││
+│  │                   │  Voz: [Varón bajo ▼]           ││
+│  └──────────────────┴──────────────────────────────────┘│
+│  [☰]  [🎵 Canciones]  [📋 Listas]  [⚙ Config]        │
+└─────────────────────────────────────────────────────────┘</pre></div>
+    <div class="screen"><h3>3. Setlists (tablet, landscape)</h3><pre>
+┌─────────────────────────────────────────────────────────┐
+│  VeD Cancionero                              [🔍] [⚙] │
+│  ┌──────────────────┬──────────────────────────────────┐│
+│  │ Listas            │  Misa del domingo              ││
+│  │                   │  [Editar] [Imprimir] [Exportar]││
+│  │ [Nueva lista]     │                                ││
+│  │                   │  1. Entrada: Bendeciré al Señor││
+│  │ 📋 Misa del dom.  │     Re · Zamba                 ││
+│  │ 📋 Misa carism.   │  2. Gloria: Santo, Santo       ││
+│  │ 📋 Retiro Adv.    │     Do · Ritmo libre           ││
+│  │                   │  3. Salmo: El Señor es mi...   ││
+│  │                   │     Sol · Canción              ││
+│  │                   │  4. Ofertorio: Alabaré         ││
+│  │                   │     Sol · Carnavalito          ││
+│  │                   │  5. Comunión: Pan de vida      ││
+│  │                   │     Fa · Zamba                 ││
+│  │                   │  6. Salida: Cristo vive        ││
+│  │                   │     Re · Marcha                ││
+│  │                   │                                ││
+│  │                   │  + Agregar canción             ││
+│  │                   │  + Agregar nota libre          ││
+│  │                   │                                ││
+│  │                   │  Duración: 35 min              ││
+│  │                   │  Voz: Varón bajo               ││
+│  └──────────────────┴──────────────────────────────────┘│
+│  [☰]  [🎵 Canciones]  [📋 Listas]  [⚙ Config]        │
+└─────────────────────────────────────────────────────────┘</pre></div>
+    <div class="screen"><h3>4. Configuración (tablet, landscape)</h3><pre>
+┌─────────────────────────────────────────────────────────┐
+│  VeD Cancionero                              [🔍] [⚙] │
+│  ┌──────────────────┬──────────────────────────────────┐│
+│  │ Menú             │  Configuración                 ││
+│  │                   │                                ││
+│  │ Apariencia        │  Apariencia                    ││
+│  │ Voz               │  Tema: [Claro ▼]               ││
+│  │ Datos             │  Zoom default: [100% ▼]        ││
+│  │ Acerca de         │  Notación: [DoM ▼]             ││
+│  │                   │  Ocultar acordes: [No ▼]       ││
+│  │                   │                                ││
+│  │                   │  Voz                           ││
+│  │                   │  Voz default: [Varón bajo ▼]   ││
+│  │                   │                                ││
+│  │                   │  Datos                         ││
+│  │                   │  Importar: [Archivo]           ││
+│  │                   │  Exportar: [JSON]              ││
+│  │                   │  Backup: [Google Drive]        ││
+│  │                   │                               ││
+│  │                   │  Acerca de                     ││
+│  │                   │  Versión: 0.1.0                ││
+│  │                   │  Canciones: 26 (Santa Rita)    ││
+│  │                   │  Listas: 3                     ││
+│  └──────────────────┴──────────────────────────────────┘│
+│  [☰]  [🎵 Canciones]  [📋 Listas]  [⚙ Config]        │
+└─────────────────────────────────────────────────────────┘</pre></div>
+  </div>
+</div>
+
+<!-- ============ DISEÑO C ============ -->
+<div class="design">
+  <h2>Diseño C — "Tarjetas"</h2>
+  <p class="desc">Todo en tarjetas con resumen visual. Menos texto, más iconos. Navegación modal. Ideal para búsqueda visual rápida.</p>
+  <div class="grid">
+    <div class="screen"><h3>1. Lista de canciones (tarjetas)</h3><pre>
+┌─────────────────────────────────────┐
+│  VeD Cancionero              [🔍]   │
+│  ┌─────────────────────────────┐   │
+│  │ Buscar título o letra...    │   │
+│  └─────────────────────────────┘   │
+│  [Todos] [Favoritos ★] [Por tema]  │
+│                                     │
+│  ┌───────────┐ ┌───────────┐       │
+│  │ 🎵        │ │ 🎵        │       │
+│  │ Bendeciré │ │ Alabaré   │       │
+│  │ al Señor  │ │           │       │
+│  │ Re · Zamba│ │ Sol · Carn│       │
+│  │ Litúrgico │ │ Religioso │       │
+│  │ ★         │ │           │       │
+│  └───────────┘ └───────────┘       │
+│  ┌───────────┐ ┌───────────┐       │
+│  │ 🎵        │ │ 🎵        │       │
+│  │ Santo     │ │ Pan de    │       │
+│  │ Santo     │ │ vida      │       │
+│  │ Do · R.L. │ │ Fa · Zamba│       │
+│  │ Litúrgico │ │ Litúrgico │       │
+│  └───────────┘ └───────────┘       │
+│                                     │
+│  [☰]  [🎵 Canciones]  [📋 Listas]  │
+└─────────────────────────────────────┘</pre></div>
+    <div class="screen"><h3>2. Vista de canción (overlay/modal)</h3><pre>
+┌─────────────────────────────────────┐
+│  (fondo oscurecido)                 │
+│  ┌─────────────────────────────┐   │
+│  │ [×] Bendeciré al Señor      │   │
+│  │ Re · Zamba · Litúrgico · ★  │   │
+│  │                             │   │
+│  │ [DoM/C+] [Ocultar] [🖨]     │   │
+│  │ [+][-]                      │   │
+│  │                             │   │
+│  │   Re        Sol       La    │   │
+│  │   Ben-de-ci-ré al Se-ñor   │   │
+│  │   Re        Sol       La    │   │
+│  │   en to-do tiem-po, en...   │   │
+│  │                             │   │
+│  │   Mi        La      Re      │   │
+│  │   Glo-ria a Dios en las...   │   │
+│  │                             │   │
+│  │   [Refrán]                  │   │
+│  │   Re        Sol       La    │   │
+│  │   Ben-de-ci-ré, ben-de-...  │   │
+│  │                             │   │
+│  │  Voz: [Varón bajo ▼]        │   │
+│  │  Ref: Sal 33, 2-3           │   │
+│  │  [Editar] [← Ant] [Sig →]   │   │
+│  └─────────────────────────────┘   │
+└─────────────────────────────────────┘</pre></div>
+    <div class="screen"><h3>3. Editor (pantalla completa)</h3><pre>
+┌─────────────────────────────────────┐
+│  [←] Editar: Bendeciré al Señor    │
+│  [Guardar] [Cancelar]              │
+│                                     │
+│  ┌─────────────────────────────┐   │
+│  │   Bendeciré al Señor en     │   │
+│  │   todo tiempo, en todo...   │   │
+│  │   Gloria a Dios en las...   │   │
+│  │   [Refrán]                  │   │
+│  │   Bendeciré, bendeciré...   │   │
+│  └─────────────────────────────┘   │
+│                                     │
+│  Acordes: [Re] [Mi] [Fa] [Sol]...  │
+│  Seleccioná sílaba → tocá acorde   │
+│                                     │
+│  ┌─ Metadatos ─────────────────┐   │
+│  │ Título: [Bendeciré al Señor]│   │
+│  │ Tono: [Re ▼] Ritmo:[Zamba ▼]│   │
+│  │ Tag: [Litúrgico ▼]          │   │
+│  │ Autor: [________]           │   │
+│  │ Link: [________]            │   │
+│  │ Ref: [Sal 33, 2-3]          │   │
+│  │ Notas: [________]           │   │
+│  │ Favorito: [★] NºSR: [12]   │   │
+│  │ NºUCN: [45] Tiempo:[Ord ▼]  │   │
+│  │ Voz: [Varón bajo ▼]         │   │
+│  └─────────────────────────────┘   │
+└─────────────────────────────────────┘</pre></div>
+    <div class="screen"><h3>4. Setlists (tarjetas horizontales)</h3><pre>
+┌─────────────────────────────────────┐
+│  [←] Listas de canciones           │
+│  [Nueva lista]                      │
+│                                     │
+│  ┌─────────────────────────────┐   │
+│  │ 📋 Misa del domingo         │   │
+│  │ 12 canciones · 35 min       │   │
+│  │ [Ver] [Editar] [Imprimir]   │   │
+│  └─────────────────────────────┘   │
+│  ┌─────────────────────────────┐   │
+│  │ 📋 Misa carismática         │   │
+│  │ 8 canciones · 25 min        │   │
+│  │ [Ver] [Editar] [Imprimir]   │   │
+│  └─────────────────────────────┘   │
+│  ┌─────────────────────────────┐   │
+│  │ 📋 Retiro de Adviento       │   │
+│  │ 15 canciones · 45 min       │   │
+│  │ [Ver] [Editar] [Imprimir]   │   │
+│  └─────────────────────────────┘   │
+│                                     │
+│  [☰]  [🎵 Canciones]  [📋 Listas]  │
+└─────────────────────────────────────┘</pre></div>
+    <div class="screen"><h3>5. Vista de setlist (modal)</h3><pre>
+┌─────────────────────────────────────┐
+│  (fondo oscurecido)                 │
+│  ┌─────────────────────────────┐   │
+│  │ [×] Misa del domingo        │   │
+│  │ [Editar] [Imprimir] [Export] │   │
+│  │                             │   │
+│  │ 1. Entrada: Bendeciré...    │   │
+│  │    Re · Zamba               │   │
+│  │ 2. Gloria: Santo, Santo     │   │
+│  │    Do · Ritmo libre         │   │
+│  │ 3. Salmo: El Señor es...    │   │
+│  │    Sol · Canción            │   │
+│  │ 4. Ofertorio: Alabaré       │   │
+│  │    Sol · Carnavalito        │   │
+│  │ 5. Comunión: Pan de vida    │   │
+│  │    Fa · Zamba               │   │
+│  │ 6. Salida: Cristo vive      │   │
+│  │    Re · Marcha              │   │
+│  │                             │   │
+│  │ + Agregar canción           │   │
+│  │ + Agregar nota libre        │   │
+│  │                             │   │
+│  │ Duración: 35 min            │   │
+│  │ Voz: Varón bajo             │   │
+│  └─────────────────────────────┘   │
+└─────────────────────────────────────┘</pre></div>
+    <div class="screen"><h3>6. Configuración (modal)</h3><pre>
+┌─────────────────────────────────────┐
+│  (fondo oscurecido)                 │
+│  ┌─────────────────────────────┐   │
+│  │ [×] Configuración           │   │
+│  │                             │   │
+│  │ Apariencia                  │   │
+│  │ Tema: [Claro ▼]             │   │
+│  │ Zoom default: [100% ▼]      │   │
+│  │ Notación: [DoM ▼]           │   │
+│  │ Ocultar acordes: [No ▼]     │   │
+│  │                             │   │
+│  │ Voz                         │   │
+│  │ Voz default: [Varón bajo ▼] │   │
+│  │                             │   │
+│  │ Datos                       │   │
+│  │ Importar: [Archivo]         │   │
+│  │ Exportar: [JSON]            │   │
+│  │ Backup: [Google Drive]      │   │
+│  │                             │   │
+│  │ Acerca de                   │   │
+│  │ Versión: 0.1.0              │   │
+│  │ Canciones: 26 (Santa Rita)  │   │
+│  │ Listas: 3                   │   │
+│  └─────────────────────────────┘   │
+└─────────────────────────────────────┘</pre></div>
+  </div>
+</div>
+
+<!-- ============ DISEÑO D ============ -->
+<div class="design">
+  <h2>Diseño D — "Canción como centro"</h2>
+  <p class="desc">La pantalla principal muestra una canción. La lista se accede por gesto. Sin distracciones, ideal para misa. Navegación gestual.</p>
+  <div class="grid">
+    <div class="screen"><h3>1. Canción principal (pantalla de inicio)</h3><pre>
+┌─────────────────────────────────────┐
+│  VeD Cancionero              [🔍]   │
+│                                     │
+│  ┌─────────────────────────────┐   │
+│  │   Re        Sol       La    │   │
+│  │   Ben-de-ci-ré al Se-ñor   │   │
+│  │   Re        Sol       La    │   │
+│  │   en to-do tiem-po, en...   │   │
+│  │                             │   │
+│  │   Mi        La      Re      │   │
+│  │   Glo-ria a Dios en las...   │   │
+│  │                             │   │
+│  │   [Refrán]                  │   │
+│  │   Re        Sol       La    │   │
+│  │   Ben-de-ci-ré, ben-de-...  │   │
+│  └─────────────────────────────┘   │
+│                                     │
+│  Bendeciré al Señor · Re · Zamba   │
+│  Voz: [Varón bajo ▼]                │
+│  [DoM/C+] [Ocultar] [🖨] [+] [-]   │
+│                                     │
+│  ← Deslizá para ver la lista →      │
+│                                     │
+│  [☰]  [🎵 Canción]  [📋 Listas]    │
+└─────────────────────────────────────┘</pre></div>
+    <div class="screen"><h3>2. Lista (accesible por deslizamiento)</h3><pre>
+┌─────────────────────────────────────┐
+│  [←] Lista de canciones            │
+│  ┌─────────────────────────────┐   │
+│  │ Buscar título o letra...    │   │
+│  └─────────────────────────────┘   │
+│  [Todos] [Favoritos ★] [Por tema]  │
+│                                     │
+│  ┌─────────────────────────────┐   │
+│  │ 🎵 Bendeciré al Señor       │   │
+│  │    Re · Zamba · Litúrgico   │   │
+│  └─────────────────────────────┘   │
+│  ┌─────────────────────────────┐   │
+│  │ 🎵 Alabaré                  │   │
+│  │    Sol · Carnavalito · Rel. │   │
+│  └─────────────────────────────┘   │
+│  ┌─────────────────────────────┐   │
+│  │ 🎵 Santo, Santo             │   │
+│  │    Do · Ritmo libre · Lit.  │   │
+│  └─────────────────────────────┘   │
+│                                     │
+│  Tocá una canción para verla        │
+│                                     │
+│  [☰]  [🎵 Canción]  [📋 Listas]    │
+└─────────────────────────────────────┘</pre></div>
+    <div class="screen"><h3>3. Editor (pestaña dentro de la canción)</h3><pre>
+┌─────────────────────────────────────┐
+│  [←] Bendeciré al Señor            │
+│  [👁 Vista] [✏️ Editar]            │
+│                                     │
+│  ┌─────────────────────────────┐   │
+│  │   Bendeciré al Señor en     │   │
+│  │   todo tiempo, en todo...   │   │
+│  │   Gloria a Dios en las...   │   │
+│  │   [Refrán]                  │   │
+│  │   Bendeciré, bendeciré...   │   │
+│  └─────────────────────────────┘   │
+│                                     │
+│  Acordes: [Re] [Mi] [Fa] [Sol]...  │
+│  Seleccioná sílaba → tocá acorde   │
+│                                     │
+│  Metadatos:                         │
+│  Título: [Bendeciré al Señor]      │
+│  Tono: [Re ▼]  Ritmo: [Zamba ▼]    │
+│  Tag: [Litúrgico ▼]                │
+│  Autor: [________]                 │
+│  Link: [________]                  │
+│  Ref: [Sal 33, 2-3]                │
+│  Notas: [________]                 │
+│  Favorito: [★]  NºSR: [12]        │
+│  NºUCN: [45]  Tiempo: [Ord. ▼]    │
+│  Voz: [Varón bajo ▼]               │
+│                                     │
+│  [Guardar] [Cancelar]              │
+└─────────────────────────────────────┘</pre></div>
+    <div class="screen"><h3>4. Setlists (accesible desde menú)</h3><pre>
+┌─────────────────────────────────────┐
+│  [←] Listas de canciones           │
+│  [Nueva lista]                      │
+│                                     │
+│  ┌─────────────────────────────┐   │
+│  │ 📋 Misa del domingo         │   │
+│  │ 12 canciones · 35 min       │   │
+│  └─────────────────────────────┘   │
+│  ┌─────────────────────────────┐   │
+│  │ 📋 Misa carismática         │   │
+│  │ 8 canciones · 25 min        │   │
+│  └─────────────────────────────┘   │
+│  ┌─────────────────────────────┐   │
+│  │ 📋 Retiro de Adviento       │   │
+│  │ 15 canciones · 45 min       │   │
+│  └─────────────────────────────┘   │
+│                                     │
+│  [☰]  [🎵 Canción]  [📋 Listas]    │
+└─────────────────────────────────────┘</pre></div>
+    <div class="screen"><h3>5. Vista de setlist</h3><pre>
+┌─────────────────────────────────────┐
+│  [←] Misa del domingo              │
+│  [Editar] [Imprimir] [Exportar]    │
+│                                     │
+│  1. Entrada: Bendeciré al Señor     │
+│     Re · Zamba                      │
+│  2. Gloria: Santo, Santo            │
+│     Do · Ritmo libre                │
+│  3. Salmo: El Señor es mi pastor    │
+│     Sol · Canción                   │
+│  4. Ofertorio: Alabaré              │
+│     Sol · Carnavalito               │
+│  5. Comunión: Pan de vida           │
+│     Fa · Zamba                      │
+│  6. Salida: Cristo vive             │
+│     Re · Marcha                     │
+│                                     │
+│  + Agregar canción                  │
+│  + Agregar nota libre               │
+│                                     │
+│  Duración: 35 min · Voz: Varón bajo │
+└─────────────────────────────────────┘</pre></div>
+    <div class="screen"><h3>6. Configuración</h3><pre>
+┌─────────────────────────────────────┐
+│  [←] Configuración                 │
+│                                     │
+│  Apariencia                         │
+│  Tema: [Claro ▼]                    │
+│  Zoom default: [100% ▼]            │
+│  Notación: [DoM ▼]                 │
+│  Ocultar acordes: [No ▼]            │
+│                                     │
+│  Voz                                │
+│  Voz default: [Varón bajo ▼]        │
+│                                     │
+│  Datos                              │
+│  Importar canciones: [Archivo]      │
+│  Exportar datos: [JSON]             │
+│  Backup: [Google Drive]             │
+│                                     │
+│  Acerca de                          │
+│  Versión: 0.1.0                     │
+│  Canciones: 26 (Santa Rita)         │
+│  Listas: 3                          │
+└─────────────────────────────────────┘</pre></div>
+  </div>
+</div>
+
+<script>
+  // Auto-scroll para tomar screenshots de cada sección
+</script>
+</body>
+</html>

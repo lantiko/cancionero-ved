@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Cancionero VeD — Galería de assets</title>
+<link rel="stylesheet" href="estilos.css">
+<style>
+  .galeria-wrap { max-width: 1100px; margin: 0 auto; }
+  .galeria-wrap h1 { font-family: Georgia, serif; font-size: 28px; margin-bottom: 6px; }
+  .galeria-wrap .sub { color: var(--muted); font-size: 14px; margin-bottom: 24px; }
+  .cat-title { font-size: 16px; font-weight: 700; margin: 28px 0 12px; color: var(--acento); }
+  .grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+    gap: 16px;
+  }
+  .card {
+    background: var(--tarjeta); border: 1px solid var(--borde);
+    border-radius: 12px; padding: 12px; text-align: center;
+  }
+  .card img {
+    max-width: 100%; height: auto; max-height: 200px;
+    object-fit: contain; border-radius: 8px;
+    background: repeating-conic-gradient(#eee 0% 25%, #fff 0% 50%) 50% / 16px 16px;
+  }
+  .card .name { font-size: 12px; font-weight: 600; margin-top: 8px; word-break: break-all; }
+  .card .dims { font-size: 11px; color: var(--muted); margin-top: 2px; }
+  .theme-bar-inline { display: flex; gap: 6px; flex-wrap: wrap; margin-bottom: 20px; }
+  .theme-btn { padding: 6px 12px; border: 1px solid var(--borde); border-radius: 6px; background: var(--tarjeta); color: var(--texto); cursor: pointer; font-size: 13px; }
+  .theme-btn.active { background: var(--acento); color: #fff; border-color: var(--acento); }
+</style>
+</head>
+<body data-theme="claro">
+<div class="app">
+  <aside class="sidebar">
+    <div class="header"><h1><span class="short">VeD</span> Galería</h1></div>
+    <div class="theme-bar-inline" id="theme-bar"></div>
+    <div style="font-size:13px;color:var(--muted);margin-top:12px;">
+      Assets del diseño original (DeepSeek).<br>
+      Click derecho en una imagen → "Guardar imagen como" para usarla.
+    </div>
+  </aside>
+  <main class="main">
+    <div class="galeria-wrap">
+      <h1>Galería de assets</h1>
+      <p class="sub">Todos los iconos e imágenes del diseño anterior, para que elijas cuáles tomar.</p>
+
+      <div class="cat-title">Logos y marca</div>
+      <div class="grid">
+        <div class="card"><img src="assets/logo-ved.jpg" alt="logo-ved.jpg"><div class="name">logo-ved.jpg</div><div class="dims">1411×1412</div></div>
+        <div class="card"><img src="assets/logo-ved-transparente.png" alt="logo-ved-transparente.png"><div class="name">logo-ved-transparente.png</div><div class="dims">1345×1270</div></div>
+        <div class="card"><img src="assets/logo-ved-invertido.png" alt="logo-ved-invertido.png"><div class="name">logo-ved-invertido.png</div><div class="dims">1345×1270</div></div>
+        <div class="card"><img src="assets/marca-v.png" alt="marca-v.png"><div class="name">marca-v.png</div><div class="dims">696×1016</div></div>
+      </div>
+
+      <div class="cat-title">Lockups (logo + texto)</div>
+      <div class="grid">
+        <div class="card"><img src="assets/lockup-georgia.png" alt="lockup-georgia.png"><div class="name">lockup-georgia.png</div><div class="dims">2098×900</div></div>
+        <div class="card"><img src="assets/lockup-cambria.png" alt="lockup-cambria.png"><div class="name">lockup-cambria.png</div><div class="dims">1971×900</div></div>
+      </div>
+
+      <div class="cat-title">Íconos de app</div>
+      <div class="grid">
+        <div class="card"><img src="assets/icon/icon-1024.png" alt="icon-1024.png"><div class="name">icon-1024.png</div><div class="dims">1024×1024</div></div>
+        <div class="card"><img src="assets/icon/icon-512.png" alt="icon-512.png"><div class="name">icon-512.png</div><div class="dims">512×512</div></div>
+        <div class="card"><img src="assets/icon/icon-512-claro.png" alt="icon-512-claro.png"><div class="name">icon-512-claro.png</div><div class="dims">512×512</div></div>
+        <div class="card"><img src="assets/icon/icon-192.png" alt="icon-192.png"><div class="name">icon-192.png</div><div class="dims">192×192</div></div>
+        <div class="card"><img src="assets/icon/icon-48.png" alt="icon-48.png"><div class="name">icon-48.png</div><div class="dims">48×48</div></div>
+        <div class="card"><img src="assets/icon/adaptive-foreground-432.png" alt="adaptive-foreground-432.png"><div class="name">adaptive-foreground-432.png</div><div class="dims">432×432</div></div>
+        <div class="card"><img src="assets/icon/adaptive-background-432.png" alt="adaptive-background-432.png"><div class="name">adaptive-background-432.png</div><div class="dims">432×432</div></div>
+        <div class="card"><img src="assets/icon/monochrome-432.png" alt="monochrome-432.png"><div class="name">monochrome-432.png</div><div class="dims">432×432</div></div>
+        <div class="card"><img src="assets/icon/_preview.png" alt="_preview.png"><div class="name">_preview.png</div><div class="dims">1120×470</div></div>
+      </div>
+    </div>
+  </main>
+</div>
+<script>
+  document.addEventListener('DOMContentLoaded', () => {
+    const bar = document.getElementById('theme-bar');
+    const themes = [
+      {id:'claro',label:'Claro'},{id:'crema',label:'Crema'},
+      {id:'sepia',label:'Sepia'},{id:'atardecer',label:'Atardecer'},
+      {id:'oscuro',label:'Oscuro'},{id:'misa',label:'Modo misa'}
+    ];
+    themes.forEach(t => {
+      const b = document.createElement('button');
+      b.className = 'theme-btn'; b.dataset.theme = t.id; b.textContent = t.label;
+      b.onclick = () => {
+        document.body.setAttribute('data-theme', t.id);
+        document.querySelectorAll('.theme-btn').forEach(x => x.classList.toggle('active', x.dataset.theme === t.id));
+      };
+      bar.appendChild(b);
+    });
+    const saved = localStorage.getItem('ved_theme') || 'claro';
+    document.body.setAttribute('data-theme', saved);
+    const active = document.querySelector(`.theme-btn[data-theme="${saved}"]`);
+    if (active) active.classList.add('active');
+  });
+</script>
+</body>
+</html>

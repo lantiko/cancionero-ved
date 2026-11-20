@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>D5 — Vista de setlist</title>
+<link rel="stylesheet" href="../estilos.css">
+<style>
+  .wrap { max-width: 420px; margin: 0 auto; background: var(--tarjeta); border-radius: 24px; overflow: hidden; box-shadow: 0 20px 60px rgba(0,0,0,.2); border: 1px solid var(--borde); }
+  .phone-bar { height: 44px; display: flex; align-items: center; justify-content: space-between; padding: 0 20px; font-size: 12px; font-weight: 600; color: var(--muted); border-bottom: 1px solid var(--borde); }
+  .app-bar { height: 46px; display: flex; align-items: center; justify-content: space-between; padding: 0 16px; border-bottom: 1px solid var(--borde); }
+  .app-bar .back { font-size: 16px; color: var(--muted); }
+  .app-bar .title { font-family: Georgia, serif; font-size: 16px; color: var(--subrayado); }
+  .app-bar .icons { display: flex; gap: 4px; }
+  .app-bar .icon { width: 30px; height: 30px; border-radius: 15px; background: var(--fondo); border: 1px solid var(--borde); display: flex; align-items: center; justify-content: center; font-size: 12px; color: var(--muted); }
+  .screen { padding: 14px 16px; }
+  .eyebrow { font-size: 10px; font-weight: 700; letter-spacing: .1em; text-transform: uppercase; color: var(--muted); margin-bottom: 2px; }
+  .title { font-family: Georgia, serif; font-size: 20px; color: var(--subrayado); margin-bottom: 4px; }
+  .sub { font-size: 11px; color: var(--muted); display: flex; align-items: center; gap: 4px; margin-bottom: 8px; }
+  .btn-row { display: flex; gap: 6px; margin-bottom: 10px; flex-wrap: wrap; }
+  .btn { height: 30px; padding: 0 10px; border-radius: 8px; border: none; font-size: 10px; font-weight: 600; display: inline-flex; align-items: center; gap: 4px; cursor: pointer; }
+  .btn.wine { background: var(--subrayado); color: #FBEFDF; }
+  .btn.ghost { background: var(--fondo); border: 1px solid var(--borde); color: var(--muted); }
+  .list-row { display: flex; align-items: center; gap: 8px; padding: 8px 0; border-bottom: 1px solid var(--borde); }
+  .list-row .num { font-size: 10px; color: var(--muted); font-weight: 700; width: 12px; }
+  .list-row .info { flex: 1; }
+  .list-row .title { font-size: 11px; font-weight: 600; color: var(--texto); }
+  .list-row .sub { font-size: 9px; color: var(--muted); }
+  .list-row .key { font-size: 9px; font-weight: 700; color: var(--acorde); background: var(--tarjeta); border-radius: 4px; padding: 2px 5px; }
+  .list-row .dur { font-size: 9px; color: var(--muted); width: 24px; text-align: right; }
+  .add-row { display: flex; gap: 8px; margin: 8px 0; font-size: 10px; color: var(--acento); font-weight: 600; }
+  .footer { font-size: 10px; color: var(--muted); text-align: center; padding: 8px 0; border-top: 1px solid var(--borde); margin-top: 8px; }
+  .design-label { text-align: center; padding: 10px; font-family: Georgia, serif; font-size: 14px; color: var(--subrayado); background: var(--fondo); border-top: 1px solid var(--borde); }
+</style>
+</head>
+<body data-theme="claro">
+<div class="wrap">
+  <div class="phone-bar"><span>9:41</span><span>📶 🔋</span></div>
+  <div class="app-bar"><span class="back">←</span><span class="title">Misa dominical</span><div class="icons"><span>↓</span><span>⋮</span></div></div>
+  <div class="screen">
+    <div class="eyebrow">Domingo 27 · 20:00</div>
+    <div class="title">Misa dominical</div>
+    <div class="sub">📍 Parroquia Sagrado Corazón</div>
+    <div class="btn-row"><span class="btn wine">Editar</span><span class="btn ghost">Imprimir</span><span class="btn ghost">Exportar</span></div>
+    <div class="list-row"><div class="num">1</div><div class="info"><div class="title">Bendeciré al Señor</div><div class="sub">Re · Zamba</div></div><span class="key">Sol</span><div class="dur">4:10</div></div>
+    <div class="list-row"><div class="num">2</div><div class="info"><div class="title">Santo, Santo</div><div class="sub">Do · Ritmo libre</div></div><span class="key">Do</span><div class="dur">3:20</div></div>
+    <div class="list-row"><div class="num">3</div><div class="info"><div class="title">Salmo 23</div><div class="sub">Sol · Canción</div></div><span class="key">Sol</span><div class="dur">3:40</div></div>
+    <div class="list-row"><div class="num">4</div><div class="info"><div class="title">Alabaré</div><div class="sub">Sol · Carnavalito</div></div><span class="key">Re</span><div class="dur">2:10</div></div>
+    <div class="list-row"><div class="num">5</div><div class="info"><div class="title">Pan de vida</div><div class="sub">Fa · Zamba</div></div><span class="key">Fa</span><div class="dur">4:00</div></div>
+    <div class="list-row"><div class="num">6</div><div class="info"><div class="title">Cristo vive</div><div class="sub">Re · Marcha</div></div><span class="key">Re</span><div class="dur">4:30</div></div>
+    <div class="add-row"><span>+ Agregar canción</span><span style="margin-left:12px;">+ Agregar nota</span></div>
+    <div class="footer">Duración: 22 min · Voz: Varón bajo</div>
+  </div>
+  <div class="design-label">D5 — Vista de setlist</div>
+</div>
+<script>
+  document.addEventListener('DOMContentLoaded', () => {
+    const saved = localStorage.getItem('ved_theme')||'claro';
+    document.body.setAttribute('data-theme', saved);
+  });
+</script>
+</body>
+</html>

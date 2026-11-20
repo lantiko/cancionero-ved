@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Cancionero VeD — Splash</title>
+<link rel="stylesheet" href="estilos.css">
+<style>
+  html, body { margin: 0; padding: 0; height: 100%; overflow: hidden; }
+  .splash {
+    height: 100vh; width: 100vw;
+    display: flex; align-items: center; justify-content: center;
+    flex-direction: column; gap: 16px;
+    cursor: pointer; user-select: none;
+  }
+  .splash-logo {
+    width: 320px; height: auto;
+    opacity: 0;
+    transform-origin: center center;
+  }
+  @keyframes heartbeat {
+    0%   { opacity: 0; }
+    30%  { opacity: 1; }
+    70%  { opacity: 1; }
+    100% { opacity: 0; }
+  }
+  .splash-name {
+    font-family: Georgia, serif; font-size: 22px;
+    letter-spacing: .02em; opacity: .85;
+  }
+  /* Respetar reduce-motion */
+  @media (prefers-reduced-motion: reduce) {
+    .splash-logo { animation: fadeIn 0.8s ease-in-out; }
+    @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
+  }
+</style>
+</head>
+<body>
+<div class="splash" id="splash">
+  <img class="splash-logo" id="splash-logo" src="assets/logo-ved-transparente.png" alt="VeD">
+  <div class="splash-name" id="splash-name">Cancionero VeD</div>
+</div>
+<script>
+  (function() {
+    const hour = new Date().getHours();
+    const isDay = hour >= 7 && hour < 19;
+    const splash = document.getElementById('splash');
+    const logo = document.getElementById('splash-logo');
+    if (isDay) {
+      document.body.style.background = '#F6F1E6';
+      splash.style.background = '#F6F1E6';
+      splash.style.color = '#1A1A1A';
+      logo.src = 'assets/logo-ved-transparente.png';
+    } else {
+      document.body.style.background = '#12293F';
+      splash.style.background = '#12293F';
+      splash.style.color = '#F7E7CE';
+      logo.src = 'assets/logo-ved-invertido.png';
+    }
+
+    const firstTime = !localStorage.getItem('ved_splash_seen');
+    const duration = firstTime ? 20000 : 10000;
+
+    // Desvanecimiento lento (fade in + fade out) x3 en la misma duración
+    logo.style.animation = 'heartbeat ' + (duration / 3) + 'ms ease-in-out 3';
+
+    let done = false;
+    function finish() {
+      if (done) return;
+      done = true;
+      localStorage.setItem('ved_splash_seen', '1');
+      window.location.href = 'inicio.html';
+    }
+
+    // Saltear con un toque
+    splash.addEventListener('click', finish);
+    splash.addEventListener('touchstart', finish, { passive: true });
+
+    setTimeout(finish, duration);
+  })();
+</script>
+</body>
+</html>

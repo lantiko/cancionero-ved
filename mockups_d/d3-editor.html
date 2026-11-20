@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>D3 — Editor (pestaña)</title>
+<link rel="stylesheet" href="../estilos.css">
+<style>
+  .wrap { max-width: 420px; margin: 0 auto; background: var(--tarjeta); border-radius: 24px; overflow: hidden; box-shadow: 0 20px 60px rgba(0,0,0,.2); border: 1px solid var(--borde); }
+  .phone-bar { height: 44px; display: flex; align-items: center; justify-content: space-between; padding: 0 20px; font-size: 12px; font-weight: 600; color: var(--muted); border-bottom: 1px solid var(--borde); }
+  .app-bar { height: 46px; display: flex; align-items: center; justify-content: space-between; padding: 0 16px; border-bottom: 1px solid var(--borde); }
+  .app-bar .back { font-size: 16px; color: var(--muted); }
+  .app-bar .title { font-family: Georgia, serif; font-size: 15px; color: var(--subrayado); }
+  .screen { padding: 14px 16px; }
+  .editor-tabs { display: flex; gap: 4px; margin-bottom: 8px; }
+  .editor-tab { flex: 1; height: 28px; border-radius: 6px; background: var(--fondo); border: 1px solid var(--borde); display: flex; align-items: center; justify-content: center; font-size: 10px; color: var(--muted); }
+  .editor-tab.on { background: var(--subrayado); color: #FBEFDF; border-color: var(--subrayado); }
+  .editor-box { background: var(--fondo); border: 1px solid var(--borde); border-radius: 8px; padding: 10px; margin-bottom: 8px; font-size: 11px; line-height: 1.5; color: var(--texto); min-height: 60px; }
+  .chord-palette { display: flex; gap: 4px; flex-wrap: wrap; margin: 6px 0; }
+  .chord-btn { height: 24px; padding: 0 6px; border-radius: 6px; background: var(--tarjeta); border: 1px solid var(--borde); font-size: 9px; font-weight: 600; color: var(--subrayado); }
+  .hint { font-size: 9px; color: var(--muted); margin: 4px 0; }
+  .meta-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 6px; margin: 6px 0; }
+  .meta-field .label { font-size: 9px; color: var(--muted); margin-bottom: 2px; }
+  .meta-field .input { width: 100%; height: 24px; border: 1px solid var(--borde); border-radius: 4px; background: var(--fondo); padding: 0 6px; font-size: 10px; color: var(--texto); }
+  .btn-row { display: flex; gap: 4px; margin: 8px 0; }
+  .btn { height: 28px; padding: 0 10px; border-radius: 6px; border: none; font-size: 10px; font-weight: 600; display: inline-flex; align-items: center; gap: 4px; cursor: pointer; }
+  .btn.primary { background: var(--subrayado); color: #FBEFDF; }
+  .btn.ghost { background: var(--fondo); border: 1px solid var(--borde); color: var(--muted); }
+  .bottom-nav { height: 60px; display: flex; align-items: center; justify-content: space-around; border-top: 1px solid var(--borde); background: var(--tarjeta); }
+  .nav-item { display: flex; flex-direction: column; align-items: center; gap: 2px; font-size: 9px; color: var(--muted); }
+  .nav-item.on { color: var(--acento); }
+  .nav-item .ic { font-size: 16px; }
+  .design-label { text-align: center; padding: 10px; font-family: Georgia, serif; font-size: 14px; color: var(--subrayado); background: var(--fondo); border-top: 1px solid var(--borde); }
+</style>
+</head>
+<body data-theme="claro">
+<div class="wrap">
+  <div class="phone-bar"><span>9:41</span><span>📶 🔋</span></div>
+  <div class="app-bar"><span class="back">←</span><span class="title">Bendeciré al Señor</span></div>
+  <div class="screen">
+    <div class="editor-tabs"><span class="editor-tab">👁 Vista</span><span class="editor-tab on">✏️ Editar</span></div>
+    <div class="editor-box">
+      Bendeciré al Señor en<br>todo tiempo, en todo...<br>Gloria a Dios en las...<br>[Refrán]<br>Bendeciré, bendeciré...
+    </div>
+    <div class="chord-palette">
+      <span class="chord-btn">Re</span><span class="chord-btn">Mi</span><span class="chord-btn">Fa</span><span class="chord-btn">Sol</span><span class="chord-btn">La</span><span class="chord-btn">Si</span><span class="chord-btn">Do#</span><span class="chord-btn">Re#</span>
+    </div>
+    <div class="hint">Seleccioná sílaba → tocá acorde</div>
+    <div class="meta-grid">
+      <div class="meta-field"><div class="label">Título</div><input class="meta-field .input" value="Bendeciré al Señor" style="width:100%;height:24px;border:1px solid var(--borde);border-radius:4px;background:var(--fondo);padding:0 6px;font-size:10px;color:var(--texto);"></div>
+      <div class="meta-field"><div class="label">Tono</div><input style="width:100%;height:24px;border:1px solid var(--borde);border-radius:4px;background:var(--fondo);padding:0 6px;font-size:10px;color:var(--texto);" value="Re"></div>
+    </div>
+    <div class="meta-grid">
+      <div class="meta-field"><div class="label">Ritmo</div><input style="width:100%;height:24px;border:1px solid var(--borde);border-radius:4px;background:var(--fondo);padding:0 6px;font-size:10px;color:var(--texto);" value="Zamba"></div>
+      <div class="meta-field"><div class="label">Tag</div><input style="width:100%;height:24px;border:1px solid var(--borde);border-radius:4px;background:var(--fondo);padding:0 6px;font-size:10px;color:var(--texto);" value="Litúrgico"></div>
+    </div>
+    <div class="meta-grid">
+      <div class="meta-field"><div class="label">Autor</div><input style="width:100%;height:24px;border:1px solid var(--borde);border-radius:4px;background:var(--fondo);padding:0 6px;font-size:10px;color:var(--texto);" value=""></div>
+      <div class="meta-field"><div class="label">Ref</div><input style="width:100%;height:24px;border:1px solid var(--borde);border-radius:4px;background:var(--fondo);padding:0 6px;font-size:10px;color:var(--texto);" value="Sal 33, 2-3"></div>
+    </div>
+    <div class="meta-grid">
+      <div class="meta-field"><div class="label">Favorito</div><input style="width:100%;height:24px;border:1px solid var(--borde);border-radius:4px;background:var(--fondo);padding:0 6px;font-size:10px;color:var(--texto);" value="★"></div>
+      <div class="meta-field"><div class="label">Voz</div><input style="width:100%;height:24px;border:1px solid var(--borde);border-radius:4px;background:var(--fondo);padding:0 6px;font-size:10px;color:var(--texto);" value="Varón bajo"></div>
+    </div>
+    <div class="btn-row">
+      <span class="btn primary">Guardar</span><span class="btn ghost">Cancelar</span>
+    </div>
+  </div>
+  <div class="bottom-nav">
+    <div class="nav-item on"><span class="ic">🎵</span><span>Canción</span></div>
+    <div class="nav-item"><span class="ic">📋</span><span>Listas</span></div>
+  </div>
+  <div class="design-label">D3 — Editor (pestaña dentro de la canción)</div>
+</div>
+<script>
+  document.addEventListener('DOMContentLoaded', () => {
+    const saved = localStorage.getItem('ved_theme')||'claro';
+    document.body.setAttribute('data-theme', saved);
+  });
+</script>
+</body>
+</html>

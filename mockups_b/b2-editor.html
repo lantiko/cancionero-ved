@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>B2 — Editor</title>
+<link rel="stylesheet" href="../estilos.css">
+<style>
+  .wrap { max-width: 900px; margin: 0 auto; background: var(--tarjeta); border-radius: 16px; overflow: hidden; box-shadow: 0 20px 60px rgba(0,0,0,.2); border: 1px solid var(--borde); }
+  .top-bar { height: 48px; display: flex; align-items: center; justify-content: space-between; padding: 0 16px; border-bottom: 1px solid var(--borde); }
+  .top-bar .title { font-family: Georgia, serif; font-size: 18px; color: var(--subrayado); }
+  .top-bar .icons { display: flex; gap: 12px; color: var(--muted); font-size: 16px; }
+  .split { display: grid; grid-template-columns: 280px 1fr; min-height: 420px; }
+  .left { border-right: 1px solid var(--borde); padding: 12px; background: var(--fondo); }
+  .left .search { height: 36px; border-radius: 10px; background: var(--tarjeta); border: 1px solid var(--borde); display: flex; align-items: center; gap: 6px; padding: 0 10px; color: var(--muted); font-size: 12px; margin-bottom: 8px; }
+  .left .song { padding: 8px; border-radius: 8px; margin-bottom: 4px; cursor: pointer; font-size: 12px; }
+  .left .song.on { background: var(--tarjeta); border: 1px solid var(--borde); }
+  .left .song .t { font-weight: 600; color: var(--subrayado); }
+  .left .song .m { font-size: 10px; color: var(--muted); margin-top: 1px; }
+  .right { padding: 16px; }
+  .right .header { display: flex; align-items: center; justify-content: space-between; margin-bottom: 8px; }
+  .right .header .title { font-family: Georgia, serif; font-size: 18px; color: var(--subrayado); }
+  .right .header .btns { display: flex; gap: 6px; }
+  .right .header .btn { height: 28px; padding: 0 10px; border-radius: 6px; border: none; font-size: 10px; font-weight: 600; background: var(--subrayado); color: #FBEFDF; }
+  .right .header .btn.ghost { background: var(--fondo); border: 1px solid var(--borde); color: var(--muted); }
+  .editor-box { background: var(--fondo); border: 1px solid var(--borde); border-radius: 8px; padding: 10px; margin-bottom: 8px; font-size: 11px; line-height: 1.5; color: var(--texto); min-height: 100px; }
+  .chord-palette { display: flex; gap: 4px; flex-wrap: wrap; margin: 6px 0; }
+  .chord-btn { height: 24px; padding: 0 8px; border-radius: 6px; background: var(--tarjeta); border: 1px solid var(--borde); font-size: 10px; font-weight: 600; color: var(--subrayado); }
+  .hint { font-size: 9px; color: var(--muted); margin: 4px 0; }
+  .meta-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 6px; margin: 6px 0; }
+  .meta-field .label { font-size: 9px; color: var(--muted); margin-bottom: 2px; }
+  .meta-field .input { width: 100%; height: 24px; border: 1px solid var(--borde); border-radius: 4px; background: var(--fondo); padding: 0 6px; font-size: 10px; color: var(--texto); }
+  .bottom-nav { height: 48px; display: flex; align-items: center; justify-content: space-around; border-top: 1px solid var(--borde); background: var(--tarjeta); }
+  .nav-item { display: flex; flex-direction: column; align-items: center; gap: 1px; font-size: 8px; color: var(--muted); }
+  .nav-item.on { color: var(--acento); }
+  .nav-item .ic { font-size: 14px; }
+  .design-label { text-align: center; padding: 10px; font-family: Georgia, serif; font-size: 14px; color: var(--subrayado); background: var(--fondo); border-top: 1px solid var(--borde); }
+</style>
+</head>
+<body data-theme="claro">
+<div class="wrap">
+  <div class="top-bar"><span class="title">VeD Cancionero</span><div class="icons"><span>🔍</span><span>⚙️</span></div></div>
+  <div class="split">
+    <div class="left">
+      <div class="search">🔍 Buscar...</div>
+      <div class="song on"><div class="t">Bendeciré al Señor</div><div class="m">Re · Zamba</div></div>
+      <div class="song"><div class="t">Alabaré</div><div class="m">Sol · Carnavalito</div></div>
+      <div class="song"><div class="t">Santo, Santo</div><div class="m">Do · Ritmo libre</div></div>
+    </div>
+    <div class="right">
+      <div class="header">
+        <div class="title">Editor: Bendeciré al Señor</div>
+        <div class="btns"><span class="btn">Guardar</span><span class="btn ghost">Cancelar</span></div>
+      </div>
+      <div class="editor-box">
+        Bendeciré al Señor en<br>todo tiempo, en todo...<br>Gloria a Dios en las...<br>[Refrán]<br>Bendeciré, bendeciré...
+      </div>
+      <div class="chord-palette">
+        <span class="chord-btn">Re</span><span class="chord-btn">Mi</span><span class="chord-btn">Fa</span><span class="chord-btn">Sol</span><span class="chord-btn">La</span><span class="chord-btn">Si</span><span class="chord-btn">Do#</span><span class="chord-btn">Re#</span>
+      </div>
+      <div class="hint">Seleccioná sílaba → tocá acorde</div>
+      <div style="font-size:10px;font-weight:700;color:var(--muted);letter-spacing:.08em;text-transform:uppercase;margin:8px 0 4px;">Metadatos</div>
+      <div class="meta-grid">
+        <div class="meta-field"><div class="label">Título</div><input class="meta-field .input" value="Bendeciré al Señor" style="width:100%;height:24px;border:1px solid var(--borde);border-radius:4px;background:var(--fondo);padding:0 6px;font-size:10px;color:var(--texto);"></div>
+        <div class="meta-field"><div class="label">Tono</div><input style="width:100%;height:24px;border:1px solid var(--borde);border-radius:4px;background:var(--fondo);padding:0 6px;font-size:10px;color:var(--texto);" value="Re"></div>
+      </div>
+      <div class="meta-grid">
+        <div class="meta-field"><div class="label">Ritmo</div><input style="width:100%;height:24px;border:1px solid var(--borde);border-radius:4px;background:var(--fondo);padding:0 6px;font-size:10px;color:var(--texto);" value="Zamba"></div>
+        <div class="meta-field"><div class="label">Tag</div><input style="width:100%;height:24px;border:1px solid var(--borde);border-radius:4px;background:var(--fondo);padding:0 6px;font-size:10px;color:var(--texto);" value="Litúrgico"></div>
+      </div>
+      <div class="meta-grid">
+        <div class="meta-field"><div class="label">Autor</div><input style="width:100%;height:24px;border:1px solid var(--borde);border-radius:4px;background:var(--fondo);padding:0 6px;font-size:10px;color:var(--texto);" value=""></div>
+        <div class="meta-field"><div class="label">Ref</div><input style="width:100%;height:24px;border:1px solid var(--borde);border-radius:4px;background:var(--fondo);padding:0 6px;font-size:10px;color:var(--texto);" value="Sal 33, 2-3"></div>
+      </div>
+      <div class="meta-grid">
+        <div class="meta-field"><div class="label">Favorito</div><input style="width:100%;height:24px;border:1px solid var(--borde);border-radius:4px;background:var(--fondo);padding:0 6px;font-size:10px;color:var(--texto);" value="★"></div>
+        <div class="meta-field"><div class="label">Voz</div><input style="width:100%;height:24px;border:1px solid var(--borde);border-radius:4px;background:var(--fondo);padding:0 6px;font-size:10px;color:var(--texto);" value="Varón bajo"></div>
+      </div>
+    </div>
+  </div>
+  <div class="bottom-nav">
+    <div class="nav-item on"><span class="ic">🎵</span><span>Canciones</span></div>
+    <div class="nav-item"><span class="ic">📋</span><span>Listas</span></div>
+    <div class="nav-item"><span class="ic">🔍</span><span>Buscar</span></div>
+    <div class="nav-item"><span class="ic">⚙️</span><span>Config</span></div>
+  </div>
+  <div class="design-label">B2 — Editor (tablet/landscape)</div>
+</div>
+<script>
+  document.addEventListener('DOMContentLoaded', () => {
+    const saved = localStorage.getItem('ved_theme')||'claro';
+    document.body.setAttribute('data-theme', saved);
+  });
+</script>
+</body>
+</html>

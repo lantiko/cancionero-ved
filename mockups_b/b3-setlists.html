@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>B3 — Setlists</title>
+<link rel="stylesheet" href="../estilos.css">
+<style>
+  .wrap { max-width: 900px; margin: 0 auto; background: var(--tarjeta); border-radius: 16px; overflow: hidden; box-shadow: 0 20px 60px rgba(0,0,0,.2); border: 1px solid var(--borde); }
+  .top-bar { height: 48px; display: flex; align-items: center; justify-content: space-between; padding: 0 16px; border-bottom: 1px solid var(--borde); }
+  .top-bar .title { font-family: Georgia, serif; font-size: 18px; color: var(--subrayado); }
+  .top-bar .icons { display: flex; gap: 12px; color: var(--muted); font-size: 16px; }
+  .split { display: grid; grid-template-columns: 240px 1fr; min-height: 420px; }
+  .left { border-right: 1px solid var(--borde); padding: 12px; background: var(--fondo); }
+  .left .btn-new { height: 32px; border-radius: 8px; background: var(--subrayado); color: #FBEFDF; display: flex; align-items: center; justify-content: center; font-size: 11px; font-weight: 600; margin-bottom: 8px; cursor: pointer; }
+  .left .list-item { padding: 8px; border-radius: 8px; margin-bottom: 4px; cursor: pointer; font-size: 12px; }
+  .left .list-item.on { background: var(--tarjeta); border: 1px solid var(--borde); }
+  .left .list-item .t { font-weight: 600; color: var(--subrayado); }
+  .left .list-item .m { font-size: 10px; color: var(--muted); margin-top: 1px; }
+  .right { padding: 16px; }
+  .right .header { display: flex; align-items: center; justify-content: space-between; margin-bottom: 8px; }
+  .right .header .title { font-family: Georgia, serif; font-size: 18px; color: var(--subrayado); }
+  .right .header .btns { display: flex; gap: 6px; }
+  .right .header .btn { height: 28px; padding: 0 10px; border-radius: 6px; border: none; font-size: 10px; font-weight: 600; background: var(--fondo); border: 1px solid var(--borde); color: var(--muted); }
+  .right .header .btn.wine { background: var(--subrayado); color: #FBEFDF; border: none; }
+  .item { display: flex; align-items: center; gap: 8px; padding: 6px 0; border-bottom: 1px solid var(--borde); }
+  .item .num { width: 12px; font-size: 10px; color: var(--muted); font-weight: 700; }
+  .item .info { flex: 1; }
+  .item .title { font-size: 12px; font-weight: 600; color: var(--texto); }
+  .item .sub { font-size: 9px; color: var(--muted); }
+  .item .key { font-size: 10px; font-weight: 700; color: var(--acorde); background: var(--tarjeta); border-radius: 4px; padding: 2px 5px; }
+  .item .dur { font-size: 9px; color: var(--muted); width: 28px; text-align: right; }
+  .momento { font-size: 9px; font-weight: 700; letter-spacing: .06em; text-transform: uppercase; color: var(--muted); display: flex; align-items: center; gap: 6px; margin: 8px 0 4px; }
+  .momento .line { flex: 1; height: 1px; background: var(--borde); }
+  .add-row { display: flex; gap: 8px; margin: 8px 0; font-size: 10px; color: var(--acento); font-weight: 600; }
+  .footer { font-size: 10px; color: var(--muted); text-align: center; padding: 8px 0; border-top: 1px solid var(--borde); margin-top: 8px; }
+  .bottom-nav { height: 48px; display: flex; align-items: center; justify-content: space-around; border-top: 1px solid var(--borde); background: var(--tarjeta); }
+  .nav-item { display: flex; flex-direction: column; align-items: center; gap: 1px; font-size: 8px; color: var(--muted); }
+  .nav-item.on { color: var(--acento); }
+  .nav-item .ic { font-size: 14px; }
+  .design-label { text-align: center; padding: 10px; font-family: Georgia, serif; font-size: 14px; color: var(--subrayado); background: var(--fondo); border-top: 1px solid var(--borde); }
+</style>
+</head>
+<body data-theme="claro">
+<div class="wrap">
+  <div class="top-bar"><span class="title">VeD Cancionero</span><div class="icons"><span>🔍</span><span>⚙️</span></div></div>
+  <div class="split">
+    <div class="left">
+      <div class="btn-new">+ Nueva lista</div>
+      <div class="list-item on"><div class="t">Misa del domingo</div><div class="m">6 canc. · 22 min</div></div>
+      <div class="list-item"><div class="t">Misa carismática</div><div class="m">8 canc. · 25 min</div></div>
+      <div class="list-item"><div class="t">Retiro de Adviento</div><div class="m">15 canc. · 45 min</div></div>
+    </div>
+    <div class="right">
+      <div class="header">
+        <div class="title">Misa del domingo</div>
+        <div class="btns"><span class="btn">Editar</span><span class="btn">Imprimir</span><span class="btn wine">Exportar</span></div>
+      </div>
+      <div class="momento">Entrada<span class="line"></span></div>
+      <div class="item"><div class="num">1</div><div class="info"><div class="title">Caminando hacia el altar</div><div class="sub">Comunidad · 4/4</div></div><span class="key">Sol</span><div class="dur">4:10</div></div>
+      <div class="momento">Gloria<span class="line"></span></div>
+      <div class="item"><div class="num">2</div><div class="info"><div class="title">Gloria a Dios en lo alto</div><div class="sub">Anónimo · 4/4</div></div><span class="key">Do</span><div class="dur">3:20</div></div>
+      <div class="momento">Salmo<span class="line"></span></div>
+      <div class="item"><div class="num">3</div><div class="info"><div class="title">Salmo 23: El Señor es mi pastor</div><div class="sub">Salmo responsorial · 3/4</div></div><span class="key">Lam</span><div class="dur">3:40</div></div>
+      <div class="momento">Aleluya<span class="line"></span></div>
+      <div class="item"><div class="num">4</div><div class="info"><div class="title">Aleluya, el Señor vive</div><div class="sub">Comunidad · 4/4</div></div><span class="key">Re</span><div class="dur">2:10</div></div>
+      <div class="momento">Ofertorio<span class="line"></span></div>
+      <div class="item"><div class="num">5</div><div class="info"><div class="title">Hoy la mesa está servida</div><div class="sub">Comunidad · 6/8</div></div><span class="key">Sol</span><div class="dur">4:00</div></div>
+      <div class="momento">Comunión<span class="line"></span></div>
+      <div class="item"><div class="num">6</div><div class="info"><div class="title">Santo es el Señor</div><div class="sub">Adapt. de Taizé · 4/4</div></div><span class="key">Sol</span><div class="dur">4:30</div></div>
+      <div class="add-row"><span>+ Agregar canción</span><span style="margin-left:16px;">+ Agregar nota libre</span></div>
+      <div class="footer">Duración: 22 min · Voz: Varón bajo</div>
+    </div>
+  </div>
+  <div class="bottom-nav">
+    <div class="nav-item"><span class="ic">🎵</span><span>Canciones</span></div>
+    <div class="nav-item on"><span class="ic">📋</span><span>Listas</span></div>
+    <div class="nav-item"><span class="ic">🔍</span><span>Buscar</span></div>
+    <div class="nav-item"><span class="ic">⚙️</span><span>Config</span></div>
+  </div>
+  <div class="design-label">B3 — Setlists (tablet/landscape)</div>
+</div>
+<script>
+  document.addEventListener('DOMContentLoaded', () => {
+    const saved = localStorage.getItem('ved_theme')||'claro';
+    document.body.setAttribute('data-theme', saved);
+  });
+</script>
+</body>
+</html>

@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Cancionero VeD — Canción</title>
+<link rel="stylesheet" href="estilos.css">
+<style>
+  .cancion-wrap { max-width: 800px; margin: 0 auto; }
+  .song-hd h1 { font-family: Georgia, serif; font-size: 26px; line-height: 1.15; font-weight: 400; letter-spacing: -.01em; margin-top: 8px; }
+  .song-hd .eyebrow { font-size: 11.5px; font-weight: 700; letter-spacing: .11em; text-transform: uppercase; color: var(--muted); margin-bottom: 4px; }
+  .song-hd .by { font-size: 13px; color: var(--muted); margin-top: 6px; }
+  .transpose { margin: 14px 0 0; background: var(--tarjeta); border: 1px solid var(--borde); border-radius: 18px; padding: 10px 12px; display: flex; align-items: center; gap: 6px; }
+  .tp-btn { width: 40px; height: 40px; border-radius: 12px; background: var(--fondo); border: 1px solid var(--borde); color: var(--texto); font-size: 19px; font-weight: 600; display: flex; align-items: center; justify-content: center; flex: 0 0 40px; cursor: pointer; }
+  .tp-key { flex: 1; text-align: center; line-height: 1.1; }
+  .tp-key .k { font-family: Georgia, serif; font-size: 22px; }
+  .tp-key .k small { font-size: 13px; color: var(--muted); font-family: system-ui, sans-serif; font-weight: 600; margin-left: 3px; }
+  .tp-key .u { font-size: 10.5px; color: var(--muted); letter-spacing: .05em; text-transform: uppercase; font-weight: 700; margin-top: 2px; }
+  .tp-cap { display: flex; flex-direction: column; align-items: center; gap: 2px; padding-left: 12px; border-left: 1px solid var(--borde); min-width: 64px; }
+  .tp-cap .v { font-size: 14px; font-weight: 700; }
+  .tp-cap .u { font-size: 10px; color: var(--muted); letter-spacing: .05em; text-transform: uppercase; font-weight: 700; }
+  .tools { display: flex; gap: 7px; margin: 8px 0 0; flex-wrap: wrap; }
+  .tool { flex: 1; min-width: 90px; height: 36px; border-radius: 11px; background: var(--tarjeta); border: 1px solid var(--borde); display: flex; align-items: center; justify-content: center; gap: 6px; font-size: 12px; font-weight: 600; color: var(--muted); cursor: pointer; }
+  .tool.on { background: var(--subrayado); border-color: var(--subrayado); color: #FBEFDF; }
+  .lyrics { margin-top: 14px; }
+  .verse { padding-bottom: 10px; }
+  .verse .vn { font-size: 10.5px; font-weight: 700; color: var(--muted); letter-spacing: .1em; text-transform: uppercase; margin-bottom: 5px; }
+  .ln { display: flex; flex-wrap: wrap; align-items: flex-end; margin-bottom: 8px; }
+  .p { display: inline-flex; flex-direction: column; align-items: flex-start; white-space: pre; margin-right: 2px; }
+  .p .c { font-size: 12.5px; font-weight: 700; color: var(--acorde); height: 17px; min-height: 17px; line-height: 1.15; letter-spacing: .01em; width: 0; overflow: visible; white-space: nowrap; }
+  .p .c:empty { height: 0; min-height: 0; }
+  .p .t { font-size: 18px; line-height: 1.4; color: var(--texto); letter-spacing: -.005em; }
+  .chorus { background: linear-gradient(90deg, rgba(18,41,63,.06), rgba(18,41,63,0)); border-left: 2.5px solid rgba(18,41,63,.42); border-radius: 0 12px 12px 0; padding: 10px 12px 6px 14px; margin: 2px 0 14px; }
+  .chorus .p .t { font-weight: 600; }
+  .chorus .vn { color: var(--subrayado); display: flex; justify-content: space-between; align-items: center; }
+  .chorus .badge { font-size: 10px; background: var(--subrayado); color: #FBEFDF; border-radius: 5px; padding: 2px 6px; letter-spacing: .04em; }
+  .hint { text-align: center; font-size: 11.5px; color: var(--muted); padding: 8px 0 4px; }
+  .nav-tab { padding: 8px 14px; border-radius: 8px; font-size: 13px; font-weight: 600; color: var(--muted); cursor: pointer; }
+  .nav-tab.on { color: var(--acento); background: var(--tarjeta); }
+  .nav-tabs { display: flex; gap: 4px; margin-bottom: 20px; border-bottom: 1px solid var(--borde); padding-bottom: 8px; flex-wrap: wrap; }
+  .iconbtn { width: 38px; height: 38px; border-radius: 50%; background: var(--tarjeta); border: 1px solid var(--borde); display: flex; align-items: center; justify-content: center; color: var(--muted); flex: 0 0 38px; cursor: pointer; }
+  .topbar { display: flex; align-items: center; justify-content: space-between; height: 46px; margin-bottom: 4px; }
+</style>
+</head>
+<body data-theme="claro">
+<div class="app">
+  <aside class="sidebar">
+    <div class="header"><h1><span class="short">VeD</span> Cancionero</h1></div>
+    <div class="theme-bar" id="theme-bar"></div>
+    <div class="nav-tabs" style="flex-direction:column;border-bottom:none;margin-bottom:12px;">
+      <div class="nav-tab">🎵 Cancionero</div>
+      <div class="nav-tab">🔍 Buscar</div>
+      <div class="nav-tab on">🎵 Canción</div>
+      <div class="nav-tab">📋 Repertorios</div>
+      <div class="nav-tab">⚙️ Ajustes</div>
+    </div>
+    <button class="btn btn-primary" id="btn-new" style="width:100%;margin-bottom:12px;">+ Nueva canción</button>
+    <button class="btn btn-secondary" id="btn-misa" style="width:100%;">Modo misa</button>
+  </aside>
+  <main class="main">
+    <div class="cancion-wrap">
+      <div class="topbar">
+        <div class="iconbtn">←</div>
+        <div style="display:flex;gap:4px;">
+          <div class="iconbtn" style="color:var(--acento);">★</div>
+          <div class="iconbtn">⋮</div>
+        </div>
+      </div>
+      <div class="song-hd">
+        <div class="eyebrow">Santo · Comunión</div>
+        <h1>Santo es el Señor</h1>
+        <div class="by">Adaptación de Taizé · 4/4 · negra = 72</div>
+      </div>
+      <div class="transpose">
+        <div class="tp-btn">−</div>
+        <div class="tp-key"><div class="k">Sol <small>G</small></div><div class="u">Original Mi</div></div>
+        <div class="tp-btn">+</div>
+        <div class="tp-cap"><div class="v">2</div><div class="u">Cejilla</div></div>
+      </div>
+      <div class="tools">
+        <div class="tool">▶ Auto-scroll</div>
+        <div class="tool" style="flex:0 0 62px;">Aa</div>
+        <div class="tool">Do · Re · Mi</div>
+      </div>
+      <div class="lyrics">
+        <div class="verse">
+          <div class="vn">Estrofa 1</div>
+          <div class="ln"><span class="p"><span class="c">Sol</span><span class="t">Santo, santo, santo es el </span></span><span class="p"><span class="c">Re</span><span class="t">Señor,</span></span></div>
+          <div class="ln"><span class="p"><span class="c">Mim</span><span class="t">Dios del universo, </span></span><span class="p"><span class="c">Do</span><span class="t">lleno de tu amor.</span></span></div>
+          <div class="ln"><span class="p"><span class="c">Sol</span><span class="t">Cielo y tierra cantan tu </span></span><span class="p"><span class="c">Re</span><span class="t">bondad,</span></span></div>
+          <div class="ln"><span class="p"><span class="c">Do</span><span class="t">hosanna en lo alto, </span></span><span class="p"><span class="c">Re</span><span class="t">Majestad.</span></span></div>
+        </div>
+        <div class="chorus">
+          <div class="vn">Estribillo <span class="badge">×2</span></div>
+          <div class="ln"><span class="p"><span class="c">Do</span><span class="t">Bendito el que </span></span><span class="p"><span class="c">Sol</span><span class="t">viene en tu </span></span><span class="p"><span class="c">Re</span><span class="t">nombre,</span></span></div>
+        </div>
+        <div class="verse">
+          <div class="vn">Estrofa 2</div>
+          <div class="ln"><span class="p"><span class="c">Sol</span><span class="t">Por tu cruz y tu </span></span><span class="p"><span class="c">Re</span><span class="t">resurrección,</span></span></div>
+          <div class="ln"><span class="p"><span class="c">Mim</span><span class="t">canta la esperanza </span></span><span class="p"><span class="c">Do</span><span class="t">de tu pueblo.</span></span></div>
+        </div>
+      </div>
+      <div class="hint">Mantené presionado un acorde para ver el diagrama</div>
+    </div>
+  </main>
+</div>
+<script>
+  document.addEventListener('DOMContentLoaded', () => {
+    const bar = document.getElementById('theme-bar');
+    ['Claro','Crema','Sepia','Atardecer','Oscuro','Modo misa'].forEach((l,i) => {
+      const ids = ['claro','crema','sepia','atardecer','oscuro','misa'];
+      const b = document.createElement('button'); b.className='theme-btn'; b.dataset.theme=ids[i]; b.textContent=l;
+      b.onclick = () => { document.body.setAttribute('data-theme', ids[i]); document.querySelectorAll('.theme-btn').forEach(x=>x.classList.toggle('active',x.dataset.theme===ids[i])); };
+      bar.appendChild(b);
+    });
+    const saved = localStorage.getItem('ved_theme')||'claro';
+    document.body.setAttribute('data-theme', saved);
+    const a = document.querySelector(`.theme-btn[data-theme="${saved}"]`); if(a) a.classList.add('active');
+  });
+</script>
+</body>
+</html>

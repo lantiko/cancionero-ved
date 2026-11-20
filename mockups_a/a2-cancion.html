@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>A2 — Vista de canción</title>
+<link rel="stylesheet" href="../estilos.css">
+<style>
+  .wrap { max-width: 420px; margin: 0 auto; background: var(--tarjeta); border-radius: 24px; overflow: hidden; box-shadow: 0 20px 60px rgba(0,0,0,.2); border: 1px solid var(--borde); }
+  .phone-bar { height: 44px; display: flex; align-items: center; justify-content: space-between; padding: 0 20px; font-size: 12px; font-weight: 600; color: var(--muted); border-bottom: 1px solid var(--borde); }
+  .app-bar { height: 46px; display: flex; align-items: center; justify-content: space-between; padding: 0 16px; border-bottom: 1px solid var(--borde); }
+  .app-bar .back { font-size: 18px; color: var(--muted); }
+  .app-bar .icons { display: flex; gap: 8px; }
+  .app-bar .icon { width: 32px; height: 32px; border-radius: 16px; background: var(--fondo); border: 1px solid var(--borde); display: flex; align-items: center; justify-content: center; font-size: 14px; color: var(--muted); }
+  .app-bar .icon.star { color: var(--acento); }
+  .screen { padding: 14px 16px; }
+  .eyebrow { font-size: 10px; font-weight: 700; letter-spacing: .1em; text-transform: uppercase; color: var(--muted); margin-bottom: 2px; }
+  .title { font-family: Georgia, serif; font-size: 22px; color: var(--subrayado); margin-bottom: 2px; }
+  .by { font-size: 11px; color: var(--muted); margin-bottom: 8px; }
+  .transpose { display: flex; align-items: center; gap: 4px; margin: 8px 0; padding: 8px; background: var(--fondo); border-radius: 12px; border: 1px solid var(--borde); }
+  .tp-btn { width: 32px; height: 32px; border-radius: 8px; background: var(--tarjeta); border: 1px solid var(--borde); display: flex; align-items: center; justify-content: center; font-size: 14px; color: var(--texto); }
+  .tp-key { flex: 1; text-align: center; }
+  .tp-key .k { font-family: Georgia, serif; font-size: 16px; color: var(--subrayado); }
+  .tp-key .k small { font-size: 10px; color: var(--muted); font-family: system-ui; font-weight: 600; margin-left: 2px; }
+  .tp-key .u { font-size: 8px; color: var(--muted); }
+  .tp-cap { text-align: center; padding-left: 8px; border-left: 1px solid var(--borde); }
+  .tp-cap .v { font-size: 12px; font-weight: 700; }
+  .tp-cap .u { font-size: 8px; color: var(--muted); }
+  .tools { display: flex; gap: 4px; margin: 6px 0; flex-wrap: wrap; }
+  .tool { height: 26px; padding: 0 8px; border-radius: 6px; background: var(--fondo); border: 1px solid var(--borde); display: flex; align-items: center; justify-content: center; font-size: 9px; color: var(--muted); }
+  .tool.on { background: var(--subrayado); color: #FBEFDF; border-color: var(--subrayado); }
+  .lyrics { margin: 8px 0; }
+  .verse-label { font-size: 9px; font-weight: 700; color: var(--muted); letter-spacing: .08em; text-transform: uppercase; margin-bottom: 3px; }
+  .ln { display: flex; flex-wrap: wrap; margin-bottom: 4px; }
+  .p { display: inline-flex; flex-direction: column; margin-right: 2px; }
+  .p .c { font-size: 9px; font-weight: 700; color: var(--acorde); height: 12px; }
+  .p .t { font-size: 13px; color: var(--texto); }
+  .chorus { border-left: 2px solid var(--subrayado); padding: 4px 6px; margin: 2px 0; background: rgba(18,41,63,.04); border-radius: 0 6px 6px 0; }
+  .chorus .verse-label { color: var(--subrayado); display: flex; justify-content: space-between; align-items: center; }
+  .badge { font-size: 8px; background: var(--subrayado); color: #FBEFDF; border-radius: 4px; padding: 1px 4px; }
+  .meta-row { display: flex; gap: 6px; font-size: 10px; color: var(--muted); margin: 6px 0; flex-wrap: wrap; }
+  .nav-row { display: flex; justify-content: space-between; font-size: 10px; color: var(--muted); margin-top: 8px; padding-top: 8px; border-top: 1px solid var(--borde); }
+  .hint { text-align: center; font-size: 10px; color: var(--muted); padding: 6px 0; }
+  .design-label { text-align: center; padding: 10px; font-family: Georgia, serif; font-size: 14px; color: var(--subrayado); background: var(--fondo); border-top: 1px solid var(--borde); }
+</style>
+</head>
+<body data-theme="claro">
+<div class="wrap">
+  <div class="phone-bar"><span>9:41</span><span>📶 🔋</span></div>
+  <div class="app-bar">
+    <span class="back">←</span>
+    <div class="icons"><span class="icon star">★</span><span class="icon">⋮</span></div>
+  </div>
+  <div class="screen">
+    <div class="eyebrow">Santo · Comunión</div>
+    <div class="title">Santo es el Señor</div>
+    <div class="by">Adaptación de Taizé · 4/4 · negra = 72</div>
+    <div class="transpose">
+      <div class="tp-btn">−</div>
+      <div class="tp-key"><div class="k">Sol <small>G</small></div><div class="u">Original Mi</div></div>
+      <div class="tp-btn">+</div>
+      <div class="tp-cap"><div class="v">2</div><div class="u">Cejilla</div></div>
+    </div>
+    <div class="tools">
+      <span class="tool">▶ Auto-scroll</span>
+      <span class="tool on">Aa</span>
+      <span class="tool">Do Re Mi</span>
+    </div>
+    <div class="lyrics">
+      <div class="verse-label">Estrofa 1</div>
+      <div class="ln"><span class="p"><span class="c">Sol</span><span class="t">Santo, santo, santo es el </span></span><span class="p"><span class="c">Re</span><span class="t">Señor,</span></span></div>
+      <div class="ln"><span class="p"><span class="c">Mim</span><span class="t">Dios del universo, </span></span><span class="p"><span class="c">Do</span><span class="t">lleno de tu amor.</span></span></div>
+      <div class="ln"><span class="p"><span class="c">Sol</span><span class="t">Cielo y tierra cantan tu </span></span><span class="p"><span class="c">Re</span><span class="t">bondad,</span></span></div>
+      <div class="ln"><span class="p"><span class="c">Do</span><span class="t">hosanna en lo alto, </span></span><span class="p"><span class="c">Re</span><span class="t">Majestad.</span></span></div>
+      <div class="chorus">
+        <div class="verse-label">Estribillo <span class="badge">×2</span></div>
+        <div class="ln"><span class="p"><span class="c">Do</span><span class="t">Bendito el que </span></span><span class="p"><span class="c">Sol</span><span class="t">viene en tu </span></span><span class="p"><span class="c">Re</span><span class="t">nombre,</span></span></div>
+      </div>
+      <div class="verse-label">Estrofa 2</div>
+      <div class="ln"><span class="p"><span class="c">Sol</span><span class="t">Por tu cruz y tu </span></span><span class="p"><span class="c">Re</span><span class="t">resurrección,</span></span></div>
+      <div class="ln"><span class="p"><span class="c">Mim</span><span class="t">canta la esperanza </span></span><span class="p"><span class="c">Do</span><span class="t">de tu pueblo.</span></span></div>
+    </div>
+    <div class="meta-row"><span>Voz: Varón bajo ▼</span><span>·</span><span>Ref: Sal 33, 2-3</span><span>·</span><span>Autor: Taizé</span></div>
+    <div class="nav-row"><span>← Anterior</span><span>Siguiente →</span></div>
+    <div class="hint">Mantené presionado un acorde para ver el diagrama</div>
+  </div>
+  <div class="design-label">A2 — Vista de canción</div>
+</div>
+<script>
+  document.addEventListener('DOMContentLoaded', () => {
+    const saved = localStorage.getItem('ved_theme')||'claro';
+    document.body.setAttribute('data-theme', saved);
+  });
+</script>
+</body>
+</html>

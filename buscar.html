@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Cancionero VeD — Buscar</title>
+<link rel="stylesheet" href="estilos.css">
+<style>
+  .buscar-wrap { max-width: 900px; margin: 0 auto; }
+  .search-box { height: 48px; border-radius: 16px; background: var(--tarjeta); border: 1px solid var(--borde); display: flex; align-items: center; gap: 10px; padding: 0 14px; color: var(--muted); font-size: 15px; margin-bottom: 12px; cursor: text; }
+  .search-box .q { color: var(--texto); font-weight: 500; }
+  .chips { display: flex; gap: 8px; flex-wrap: wrap; }
+  .chip { height: 32px; padding: 0 13px; border-radius: 999px; background: var(--tarjeta); border: 1px solid var(--borde); font-size: 13px; color: var(--texto); display: inline-flex; align-items: center; gap: 6px; font-weight: 500; cursor: pointer; }
+  .chip.on { background: var(--texto); color: var(--fondo); border-color: var(--texto); }
+  .chip.wine { background: var(--subrayado); color: #FBEFDF; border-color: var(--subrayado); }
+  .rowitem { display: flex; align-items: center; gap: 13px; padding: 10px 0; border-bottom: 1px solid var(--borde); }
+  .rowitem .art { width: 46px; height: 46px; border-radius: 13px; flex: 0 0 46px; display: flex; align-items: center; justify-content: center; font-family: Georgia, serif; font-size: 19px; color: #FBEFDF; background: linear-gradient(150deg, var(--subrayado), #0A1A2A); }
+  .rowitem .art.alt { background: linear-gradient(150deg, #6A5A93, #443668); }
+  .rowitem .art.alt2 { background: linear-gradient(150deg, #6E8A6B, #41563F); }
+  .rowitem .art.alt3 { background: linear-gradient(150deg, #B98B3E, #7A571E); }
+  .rowitem .tx { flex: 1; min-width: 0; }
+  .rowitem .t { font-size: 15px; font-weight: 600; }
+  .rowitem .s { font-size: 12.5px; color: var(--muted); margin-top: 2px; }
+  .rowitem .key { font-size: 12px; font-weight: 700; color: var(--acorde); background: var(--tarjeta); border-radius: 8px; padding: 4px 8px; flex: 0 0 auto; }
+  .card { background: var(--tarjeta); border: 1px solid var(--borde); border-radius: 12px; padding: 12px 14px; margin-top: 8px; }
+  .sec-title { font-size: 13px; font-weight: 700; letter-spacing: .08em; text-transform: uppercase; color: var(--muted); margin: 18px 0 8px; display: flex; align-items: center; justify-content: space-between; }
+  .sec-title .link { letter-spacing: .02em; text-transform: none; font-size: 13px; color: var(--acento); font-weight: 600; cursor: pointer; }
+  .mark { background: var(--acento); color: var(--fondo); border-radius: 4px; padding: 1px 3px; }
+  .nav-tab { padding: 8px 14px; border-radius: 8px; font-size: 13px; font-weight: 600; color: var(--muted); cursor: pointer; }
+  .nav-tab.on { color: var(--acento); background: var(--tarjeta); }
+  .nav-tabs { display: flex; gap: 4px; margin-bottom: 20px; border-bottom: 1px solid var(--borde); padding-bottom: 8px; flex-wrap: wrap; }
+</style>
+</head>
+<body data-theme="claro">
+<div class="app">
+  <aside class="sidebar">
+    <div class="header"><h1><span class="short">VeD</span> Cancionero</h1></div>
+    <div class="theme-bar" id="theme-bar"></div>
+    <div class="nav-tabs" style="flex-direction:column;border-bottom:none;margin-bottom:12px;">
+      <div class="nav-tab">🎵 Cancionero</div>
+      <div class="nav-tab on">🔍 Buscar</div>
+      <div class="nav-tab">📋 Repertorios</div>
+      <div class="nav-tab">⚙️ Ajustes</div>
+    </div>
+    <button class="btn btn-primary" id="btn-new" style="width:100%;margin-bottom:12px;">+ Nueva canción</button>
+    <button class="btn btn-secondary" id="btn-misa" style="width:100%;">Modo misa</button>
+  </aside>
+  <main class="main">
+    <div class="buscar-wrap">
+      <div class="search-box"><svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round"><circle cx="11" cy="11" r="6.6"/><path d="m16 16 4.2 4.2"/></svg><span class="q">santo</span></div>
+      <div class="chips" style="margin-bottom:8px;"><span class="chip on">Todo</span><span class="chip">Momento</span><span class="chip">Tiempo</span><span class="chip">Tono</span></div>
+      <div class="chips" style="margin-bottom:12px;"><span class="chip wine">Comunión ✕</span><span class="chip wine">Sol ✕</span></div>
+      <div class="sec-title">18 canciones <span style="font-size:12.5px;color:var(--muted);font-weight:400;">Más usadas ▾</span></div>
+      <div>
+        <div class="rowitem"><div class="art">S</div><div class="tx"><div class="t">Santo es el Señor ★</div><div class="s">Adapt. de Taizé · Favorita · Sol</div></div><span class="key">Sol</span></div>
+        <div class="rowitem"><div class="art alt">S</div><div class="tx"><div class="t">Santo, santo, santo</div><div class="s">Anónimo · Santo · Do</div></div><span class="key">Do</span></div>
+        <div class="rowitem"><div class="art alt2">S</div><div class="tx"><div class="t">Santo es el Señor (versión corta)</div><div class="s">Comunidad · Comunión · Re</div></div><span class="key">Re</span></div>
+        <div class="rowitem"><div class="art alt3">H</div><div class="tx"><div class="t">Hosanna al Hijo de David</div><div class="s">Anónimo · Aleluya · Sol</div></div><span class="key">Sol</span></div>
+      </div>
+      <div class="sec-title">En la letra</div>
+      <div class="card"><div style="font-size:12px;font-weight:600;color:var(--muted);">Santo es el Señor</div><div style="font-size:14px;line-height:1.55;margin-top:4px;color:var(--muted);">«<span class="mark">Santo</span>, santo, santo es el Señor, Dios del universo…»</div></div>
+      <div class="card"><div style="font-size:12px;font-weight:600;color:var(--muted);">Hosanna al Hijo de David</div><div style="font-size:14px;line-height:1.55;margin-top:4px;color:var(--muted);">«…bendito el que viene, <span class="mark">Santo</span> es tu nombre…»</div></div>
+    </div>
+  </main>
+</div>
+<script>
+  document.addEventListener('DOMContentLoaded', () => {
+    const bar = document.getElementById('theme-bar');
+    ['Claro','Crema','Sepia','Atardecer','Oscuro','Modo misa'].forEach((l,i) => {
+      const ids = ['claro','crema','sepia','atardecer','oscuro','misa'];
+      const b = document.createElement('button'); b.className='theme-btn'; b.dataset.theme=ids[i]; b.textContent=l;
+      b.onclick = () => { document.body.setAttribute('data-theme', ids[i]); document.querySelectorAll('.theme-btn').forEach(x=>x.classList.toggle('active',x.dataset.theme===ids[i])); };
+      bar.appendChild(b);
+    });
+    const saved = localStorage.getItem('ved_theme')||'claro';
+    document.body.setAttribute('data-theme', saved);
+    const a = document.querySelector(`.theme-btn[data-theme="${saved}"]`); if(a) a.classList.add('active');
+  });
+</script>
+</body>
+</html>

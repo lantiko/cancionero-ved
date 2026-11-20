@@ -1,0 +1,177 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Mockup C — Tarjetas</title>
+<link rel="stylesheet" href="estilos.css">
+<style>
+  .mockup-wrap { max-width: 420px; margin: 0 auto; background: var(--tarjeta); border-radius: 24px; overflow: hidden; box-shadow: 0 20px 60px rgba(0,0,0,.2); border: 1px solid var(--borde); }
+  .phone-bar { height: 44px; display: flex; align-items: center; justify-content: space-between; padding: 0 20px; font-size: 12px; font-weight: 600; color: var(--muted); border-bottom: 1px solid var(--borde); }
+  .app-bar { height: 52px; display: flex; align-items: center; justify-content: space-between; padding: 0 16px; border-bottom: 1px solid var(--borde); }
+  .app-bar .title { font-family: Georgia, serif; font-size: 18px; color: var(--subrayado); }
+  .app-bar .icons { display: flex; gap: 12px; color: var(--muted); font-size: 16px; }
+  .screen { padding: 16px; }
+  .search { height: 40px; border-radius: 12px; background: var(--fondo); border: 1px solid var(--borde); display: flex; align-items: center; gap: 8px; padding: 0 12px; color: var(--muted); font-size: 13px; margin-bottom: 10px; }
+  .chips { display: flex; gap: 6px; flex-wrap: wrap; margin-bottom: 12px; }
+  .chip { height: 28px; padding: 0 10px; border-radius: 999px; background: var(--fondo); border: 1px solid var(--borde); font-size: 11px; color: var(--muted); display: inline-flex; align-items: center; }
+  .chip.on { background: var(--subrayado); color: #FBEFDF; border-color: var(--subrayado); }
+  .grid { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; margin-bottom: 12px; }
+  .card { background: var(--fondo); border: 1px solid var(--borde); border-radius: 12px; padding: 10px; text-align: center; }
+  .card .ic { font-size: 24px; margin-bottom: 4px; }
+  .card .title { font-family: Georgia, serif; font-size: 12px; color: var(--subrayado); margin-bottom: 2px; }
+  .card .meta { font-size: 9px; color: var(--muted); }
+  .card .tag { font-size: 8px; background: var(--acento); color: var(--fondo); border-radius: 4px; padding: 1px 4px; margin-top: 4px; display: inline-block; }
+  .card .fav { font-size: 12px; color: var(--acento); margin-top: 2px; }
+  .bottom-nav { height: 60px; display: flex; align-items: center; justify-content: space-around; border-top: 1px solid var(--borde); background: var(--tarjeta); }
+  .nav-item { display: flex; flex-direction: column; align-items: center; gap: 2px; font-size: 9px; color: var(--muted); }
+  .nav-item.on { color: var(--acento); }
+  .nav-item .ic { font-size: 16px; }
+  .modal-overlay { background: rgba(0,0,0,.5); padding: 30px 16px 16px; }
+  .modal { background: var(--tarjeta); border-radius: 16px; padding: 14px; border: 1px solid var(--borde); }
+  .modal .close { float: right; font-size: 14px; color: var(--muted); cursor: pointer; }
+  .modal .title { font-family: Georgia, serif; font-size: 16px; color: var(--subrayado); margin-bottom: 8px; }
+  .modal .meta { font-size: 10px; color: var(--muted); margin-bottom: 8px; }
+  .lyrics .ln { display: flex; flex-wrap: wrap; margin-bottom: 4px; }
+  .lyrics .p { display: inline-flex; flex-direction: column; margin-right: 2px; }
+  .lyrics .c { font-size: 9px; font-weight: 700; color: var(--acorde); height: 12px; }
+  .lyrics .t { font-size: 12px; color: var(--texto); }
+  .chorus { border-left: 2px solid var(--subrayado); padding: 4px 6px; margin: 2px 0; background: rgba(18,41,63,.04); border-radius: 0 6px 6px 0; }
+  .tools { display: flex; gap: 4px; margin: 6px 0; flex-wrap: wrap; }
+  .tool { height: 24px; padding: 0 8px; border-radius: 6px; background: var(--fondo); border: 1px solid var(--borde); display: flex; align-items: center; justify-content: center; font-size: 9px; color: var(--muted); }
+  .tool.on { background: var(--subrayado); color: #FBEFDF; border-color: var(--subrayado); }
+  .btn-row { display: flex; gap: 4px; margin: 8px 0; flex-wrap: wrap; }
+  .btn { height: 28px; padding: 0 10px; border-radius: 6px; border: none; font-size: 10px; font-weight: 600; display: inline-flex; align-items: center; gap: 4px; cursor: pointer; }
+  .btn.primary { background: var(--subrayado); color: #FBEFDF; }
+  .btn.ghost { background: var(--fondo); border: 1px solid var(--borde); color: var(--muted); }
+  .form-group { margin-bottom: 6px; }
+  .form-label { font-size: 9px; color: var(--muted); margin-bottom: 2px; }
+  .form-input { width: 100%; height: 24px; border: 1px solid var(--borde); border-radius: 4px; background: var(--fondo); padding: 0 6px; font-size: 10px; color: var(--texto); }
+  .metadatos { background: var(--fondo); border: 1px solid var(--borde); border-radius: 8px; padding: 8px; margin-top: 8px; }
+  .metadatos .title { font-size: 10px; font-weight: 700; color: var(--muted); margin-bottom: 6px; }
+  .design-label { text-align: center; padding: 10px; font-family: Georgia, serif; font-size: 14px; color: var(--subrayado); background: var(--fondo); border-top: 1px solid var(--borde); }
+  .list-card { background: var(--fondo); border: 1px solid var(--borde); border-radius: 10px; padding: 12px; margin-bottom: 8px; }
+  .list-card .title { font-family: Georgia, serif; font-size: 14px; color: var(--subrayado); margin-bottom: 2px; }
+  .list-card .meta { font-size: 10px; color: var(--muted); margin-bottom: 8px; }
+  .list-card .btns { display: flex; gap: 6px; }
+  .list-item { display: flex; align-items: center; gap: 8px; padding: 8px 0; border-bottom: 1px solid var(--borde); }
+  .list-item .num { font-size: 11px; color: var(--muted); font-weight: 700; width: 14px; }
+  .list-item .info { flex: 1; }
+  .list-item .title { font-size: 12px; font-weight: 600; color: var(--texto); }
+  .list-item .sub { font-size: 10px; color: var(--muted); }
+  .list-item .key { font-size: 10px; font-weight: 700; color: var(--acorde); background: var(--tarjeta); border-radius: 6px; padding: 2px 6px; }
+  .list-item .dur { font-size: 10px; color: var(--muted); width: 28px; text-align: right; }
+  .momento { font-size: 9px; font-weight: 700; letter-spacing: .08em; text-transform: uppercase; color: var(--muted); display: flex; align-items: center; gap: 6px; margin: 8px 0 4px; }
+  .momento .line { flex: 1; height: 1px; background: var(--borde); }
+  .setting-row { display: flex; align-items: center; gap: 8px; padding: 8px 0; border-bottom: 1px solid var(--borde); }
+  .setting-row .label { flex: 1; font-size: 11px; }
+  .setting-row .label .sub { font-size: 9px; color: var(--muted); }
+  .toggle { width: 32px; height: 18px; border-radius: 9px; background: var(--borde); position: relative; }
+  .toggle.on { background: var(--acento); }
+  .toggle::after { content: ''; position: absolute; top: 2px; left: 2px; width: 14px; height: 14px; border-radius: 50%; background: #fff; }
+  .toggle.on::after { left: 16px; }
+  .seg { display: flex; background: var(--fondo); border-radius: 6px; padding: 2px; gap: 2px; border: 1px solid var(--borde); }
+  .seg span { font-size: 9px; font-weight: 600; padding: 3px 6px; border-radius: 4px; color: var(--muted); }
+  .seg span.on { background: var(--tarjeta); color: var(--texto); }
+  .slider { display: flex; align-items: center; gap: 6px; }
+  .slider .track { width: 60px; height: 4px; border-radius: 2px; background: var(--borde); position: relative; }
+  .slider .track i { position: absolute; left: 0; top: 0; bottom: 0; width: 58%; border-radius: 2px; background: var(--acento); }
+  .slider .knob { position: absolute; left: 58%; top: 50%; transform: translate(-50%,-50%); width: 12px; height: 12px; border-radius: 50%; background: #fff; border: 1px solid var(--borde); }
+</style>
+</head>
+<body data-theme="claro">
+<!-- Lista de canciones -->
+<div class="mockup-wrap">
+  <div class="phone-bar"><span>9:41</span><span>📶 🔋</span></div>
+  <div class="app-bar"><span class="title">VeD Cancionero</span><div class="icons"><span>🔍</span></div></div>
+  <div class="screen">
+    <div class="search">🔍 Buscar título o letra...</div>
+    <div class="chips"><span class="chip on">Todos</span><span class="chip">Favoritos ★</span><span class="chip">Por tema</span></div>
+    <div class="grid">
+      <div class="card"><div class="ic">🎵</div><div class="title">Bendeciré al Señor</div><div class="meta">Re · Zamba</div><div class="tag">Litúrgico</div><div class="fav">★</div></div>
+      <div class="card"><div class="ic">🎵</div><div class="title">Alabaré</div><div class="meta">Sol · Carnavalito</div><div class="tag">Religioso</div></div>
+      <div class="card"><div class="ic">🎵</div><div class="title">Santo, Santo</div><div class="meta">Do · Ritmo libre</div><div class="tag">Litúrgico</div><div class="fav">★</div></div>
+      <div class="card"><div class="ic">🎵</div><div class="title">Pan de vida</div><div class="meta">Fa · Zamba</div><div class="tag">Litúrgico</div></div>
+    </div>
+  </div>
+  <div class="bottom-nav">
+    <div class="nav-item on"><span class="ic">🎵</span><span>Canciones</span></div>
+    <div class="nav-item"><span class="ic">📋</span><span>Listas</span></div>
+    <div class="nav-item"><span class="ic">🔍</span><span>Buscar</span></div>
+  </div>
+  <div class="design-label">Diseño C — Tarjetas (lista)</div>
+</div>
+
+<div style="height:30px;"></div>
+
+<!-- Vista de canción (modal) -->
+<div class="mockup-wrap">
+  <div class="phone-bar"><span>9:41</span><span>📶 🔋</span></div>
+  <div class="modal-overlay">
+    <div class="modal">
+      <span class="close">✕</span>
+      <div class="title">Bendeciré al Señor</div>
+      <div class="meta">Re · Zamba · Litúrgico · ★</div>
+      <div class="tools"><span class="tool on">DoM/C+</span><span class="tool">Ocultar</span><span class="tool">🖨</span><span class="tool">+</span><span class="tool">−</span></div>
+      <div class="lyrics">
+        <div class="ln"><span class="p"><span class="c">Re</span><span class="t">Bendeciré al </span></span><span class="p"><span class="c">Sol</span><span class="t">Señor, </span></span></div>
+        <div class="ln"><span class="p"><span class="c">Re</span><span class="t">en todo </span></span><span class="p"><span class="c">La</span><span class="t">tiempo.</span></span></div>
+        <div class="chorus">
+          <div class="ln"><span class="p"><span class="c">Do</span><span class="t">Gloria, </span></span><span class="p"><span class="c">Re</span><span class="t">gloria </span></span><span class="p"><span class="c">Mi</span><span class="t">a Dios.</span></span></div>
+        </div>
+      </div>
+      <div class="btn-row">
+        <span class="btn primary">Editar</span><span class="btn ghost">← Ant</span><span class="btn ghost">Sig →</span>
+      </div>
+      <div class="metadatos">
+        <div class="title">Metadatos</div>
+        <div class="form-group"><div class="form-label">Título</div><input class="form-input" value="Bendeciré al Señor"></div>
+        <div class="form-row">
+          <div style="flex:1;"><div class="form-label">Tono</div><input class="form-input" value="Re"></div>
+          <div style="flex:1;"><div class="form-label">Ritmo</div><input class="form-input" value="Zamba"></div>
+        </div>
+        <div class="form-group"><div class="form-label">Tag</div><input class="form-input" value="Litúrgico"></div>
+      </div>
+    </div>
+  </div>
+  <div class="design-label">Diseño C — Tarjetas (vista de canción modal)</div>
+</div>
+
+<div style="height:30px;"></div>
+
+<!-- Setlists -->
+<div class="mockup-wrap">
+  <div class="phone-bar"><span>9:41</span><span>📶 🔋</span></div>
+  <div class="app-bar"><span class="title">Listas de canciones</span><div class="icons"><span>+</span></div></div>
+  <div class="screen">
+    <div class="list-card">
+      <div class="title">Misa del domingo</div>
+      <div class="meta">12 canciones · 35 min</div>
+      <div class="btns"><span class="btn ghost small" style="font-size:10px;padding:4px 8px;">Ver</span><span class="btn ghost small" style="font-size:10px;padding:4px 8px;">Editar</span><span class="btn ghost small" style="font-size:10px;padding:4px 8px;">Imprimir</span></div>
+    </div>
+    <div class="list-card">
+      <div class="title">Misa carismática</div>
+      <div class="meta">8 canciones · 25 min</div>
+      <div class="btns"><span class="btn ghost small" style="font-size:10px;padding:4px 8px;">Ver</span><span class="btn ghost small" style="font-size:10px;padding:4px 8px;">Editar</span><span class="btn ghost small" style="font-size:10px;padding:4px 8px;">Imprimir</span></div>
+    </div>
+    <div class="list-card">
+      <div class="title">Retiro de Adviento</div>
+      <div class="meta">15 canciones · 45 min</div>
+      <div class="btns"><span class="btn ghost small" style="font-size:10px;padding:4px 8px;">Ver</span><span class="btn ghost small" style="font-size:10px;padding:4px 8px;">Editar</span><span class="btn ghost small" style="font-size:10px;padding:4px 8px;">Imprimir</span></div>
+    </div>
+  </div>
+  <div class="bottom-nav">
+    <div class="nav-item"><span class="ic">🎵</span><span>Canciones</span></div>
+    <div class="nav-item on"><span class="ic">📋</span><span>Listas</span></div>
+    <div class="nav-item"><span class="ic">🔍</span><span>Buscar</span></div>
+  </div>
+  <div class="design-label">Diseño C — Tarjetas (setlists)</div>
+</div>
+<script>
+  document.addEventListener('DOMContentLoaded', () => {
+    const saved = localStorage.getItem('ved_theme')||'claro';
+    document.body.setAttribute('data-theme', saved);
+  });
+</script>
+</body>
+</html>

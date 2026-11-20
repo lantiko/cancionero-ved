@@ -1,0 +1,259 @@
+/* ============================================
+   Cancionero VeD — Estilos web (paleta nueva)
+   5 temas + modo misa
+   ============================================ */
+
+:root {
+  /* Tema por defecto: Claro */
+  --fondo: #FFFFFF;
+  --texto: #1A1A1A;
+  --acorde: #C0392B;
+  --subrayado: #12293F;
+  --acento: #C87A28;
+  --tarjeta: #FFFCF7;
+  --borde: #DDDDDD;
+  --muted: #666666;
+}
+
+/* ---- Temas ---- */
+body[data-theme="claro"] {
+  --fondo: #FFFFFF; --texto: #1A1A1A; --acorde: #C0392B;
+  --subrayado: #12293F; --acento: #C87A28; --tarjeta: #FFFCF7;
+  --borde: #DDDDDD; --muted: #666666;
+}
+body[data-theme="crema"] {
+  --fondo: #F6F1E6; --texto: #1A1A1A; --acorde: #C0392B;
+  --subrayado: #12293F; --acento: #C87A28; --tarjeta: #FFFCF7;
+  --borde: #D8D0C0; --muted: #666666;
+}
+body[data-theme="sepia"] {
+  --fondo: #E3D5B8; --texto: #1A1A1A; --acorde: #C0392B;
+  --subrayado: #12293F; --acento: #C87A28; --tarjeta: #F0E6CE;
+  --borde: #C9B99A; --muted: #555555;
+}
+body[data-theme="atardecer"] {
+  --fondo: #6B5D50; --texto: #F5F0E8; --acorde: #E8604C;
+  --subrayado: #5B9BD5; --acento: #E8A45E; --tarjeta: #7D6B5D;
+  --borde: #8A7A6A; --muted: #D0C5B5;
+}
+body[data-theme="oscuro"] {
+  --fondo: #000000; --texto: #FFFFFF; --acorde: #E8604C;
+  --subrayado: #5B9BD5; --acento: #E8A45E; --tarjeta: #111111;
+  --borde: #333333; --muted: #AAAAAA;
+}
+body[data-theme="misa"] {
+  --fondo: #000000; --texto: #F6F1E6; --acorde: #E8A45E;
+  --subrayado: #5B9BD5; --acento: #E8A45E; --tarjeta: #0A0A0A;
+  --borde: #222222; --muted: #BBBBBB;
+}
+
+* { box-sizing: border-box; margin: 0; padding: 0; }
+
+body {
+  font-family: system-ui, -apple-system, "Segoe UI", sans-serif;
+  background: var(--fondo);
+  color: var(--texto);
+  min-height: 100vh;
+  transition: background 0.2s, color 0.2s;
+}
+
+/* ---- Layout ---- */
+.app {
+  display: grid;
+  grid-template-columns: 320px 1fr;
+  min-height: 100vh;
+}
+@media (max-width: 768px) {
+  .app { grid-template-columns: 1fr; }
+  .sidebar { border-right: none; border-bottom: 1px solid var(--borde); }
+}
+
+.sidebar {
+  background: var(--tarjeta);
+  border-right: 1px solid var(--borde);
+  padding: 20px;
+  overflow-y: auto;
+}
+.main {
+  padding: 24px;
+  overflow-y: auto;
+}
+
+/* ---- Header ---- */
+.header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 20px;
+  flex-wrap: wrap;
+  gap: 12px;
+}
+.header h1 {
+  font-family: Georgia, serif;
+  font-size: 24px;
+  letter-spacing: -0.01em;
+}
+.header .short { color: var(--acento); }
+
+/* ---- Temas selector ---- */
+.theme-bar {
+  display: flex;
+  gap: 6px;
+  flex-wrap: wrap;
+  margin-bottom: 20px;
+}
+.theme-btn {
+  padding: 6px 12px;
+  border: 1px solid var(--borde);
+  border-radius: 6px;
+  background: var(--tarjeta);
+  color: var(--texto);
+  cursor: pointer;
+  font-size: 13px;
+  transition: all 0.15s;
+}
+.theme-btn:hover { border-color: var(--acento); }
+.theme-btn.active {
+  background: var(--acento);
+  color: #fff;
+  border-color: var(--acento);
+}
+
+/* ---- Botones ---- */
+.btn {
+  padding: 8px 16px;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  font-size: 14px;
+  font-weight: 600;
+  transition: opacity 0.15s;
+}
+.btn:hover { opacity: 0.9; }
+.btn-primary { background: var(--acento); color: #fff; }
+.btn-secondary { background: var(--subrayado); color: #fff; }
+.btn-danger { background: #c0392b; color: #fff; }
+.btn-ghost {
+  background: transparent;
+  border: 1px solid var(--borde);
+  color: var(--texto);
+}
+
+/* ---- Lista de canciones ---- */
+.song-list { list-style: none; }
+.song-item {
+  padding: 12px;
+  border: 1px solid var(--borde);
+  border-radius: 8px;
+  margin-bottom: 8px;
+  cursor: pointer;
+  background: var(--fondo);
+  transition: border-color 0.15s;
+}
+.song-item:hover { border-color: var(--acento); }
+.song-item.active { border-color: var(--acento); background: var(--tarjeta); }
+.song-item .title { font-weight: 600; font-size: 15px; }
+.song-item .meta { font-size: 12px; color: var(--muted); margin-top: 2px; }
+
+/* ---- Formulario ---- */
+.form-group { margin-bottom: 16px; }
+.form-group label {
+  display: block;
+  font-size: 13px;
+  font-weight: 600;
+  margin-bottom: 4px;
+  color: var(--muted);
+}
+.form-group input,
+.form-group textarea,
+.form-group select {
+  width: 100%;
+  padding: 8px 12px;
+  border: 1px solid var(--borde);
+  border-radius: 6px;
+  background: var(--fondo);
+  color: var(--texto);
+  font-size: 14px;
+  font-family: inherit;
+}
+.form-group textarea {
+  min-height: 160px;
+  font-family: "Consolas", "Courier New", monospace;
+  font-size: 13px;
+  resize: vertical;
+}
+.form-hint {
+  font-size: 12px;
+  color: var(--muted);
+  margin-top: 4px;
+  line-height: 1.5;
+}
+
+/* ---- Vista de canción ---- */
+.song-view { max-width: 800px; }
+.song-view h2 {
+  font-family: Georgia, serif;
+  font-size: 26px;
+  margin-bottom: 4px;
+}
+.song-view .song-meta {
+  font-size: 13px;
+  color: var(--muted);
+  margin-bottom: 20px;
+}
+.song-line {
+  margin-bottom: 12px;
+  line-height: 1.5;
+}
+.chord-line {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0;
+}
+.seg {
+  display: inline-block;
+  vertical-align: top;
+  text-align: center;
+  margin-right: 2px;
+  min-width: 20px;
+}
+.seg .chord {
+  display: block;
+  font-size: 12px;
+  font-weight: bold;
+  color: var(--acorde);
+  min-height: 16px;
+  line-height: 1;
+}
+.seg .txt {
+  display: block;
+  font-size: 18px;
+  color: var(--texto);
+  line-height: 1.4;
+}
+.seg .txt.melisma { font-style: italic; color: var(--muted); }
+
+/* ---- Empty state ---- */
+.empty-state {
+  text-align: center;
+  padding: 40px 20px;
+  color: var(--muted);
+}
+.empty-state h3 { margin-bottom: 8px; color: var(--texto); }
+
+/* ---- Toast ---- */
+.toast {
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+  padding: 12px 20px;
+  background: var(--acento);
+  color: #fff;
+  border-radius: 8px;
+  font-size: 14px;
+  opacity: 0;
+  transform: translateY(20px);
+  transition: all 0.3s;
+  z-index: 1000;
+}
+.toast.show { opacity: 1; transform: translateY(0); }

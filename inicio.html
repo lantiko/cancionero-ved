@@ -1,0 +1,204 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Cancionero VeD — Inicio</title>
+<link rel="stylesheet" href="estilos.css">
+<style>
+  /* ---- Página principal (layout original adaptado a desktop) ---- */
+  .inicio-wrap { max-width: 900px; margin: 0 auto; }
+
+  .eyebrow {
+    font-size: 11.5px; font-weight: 700; letter-spacing: .11em;
+    text-transform: uppercase; color: var(--muted);
+    display: flex; align-items: center; gap: 7px; margin-bottom: 4px;
+  }
+  .eyebrow .dot { width: 6px; height: 6px; border-radius: 50%; background: var(--acento); }
+
+  .hero-card {
+    margin-top: 12px; padding: 20px; border-radius: 22px;
+    background: linear-gradient(155deg, var(--subrayado) 0%, #0A1A2A 100%);
+    color: #FBEFDF; position: relative; overflow: hidden;
+    box-shadow: 0 18px 40px -20px rgba(0,0,0,.4);
+  }
+  .hero-card .lbl { font-size: 11px; letter-spacing: .13em; text-transform: uppercase; opacity: .7; font-weight: 700; }
+  .hero-card h3 { font-family: Georgia, serif; font-size: 24px; font-weight: 400; margin-top: 8px; letter-spacing: -.01em; }
+  .hero-card .meta { display: flex; gap: 14px; font-size: 12.5px; opacity: .78; margin-top: 6px; }
+  .hero-card .row { display: flex; align-items: center; gap: 10px; margin-top: 16px; flex-wrap: wrap; }
+  .hero-card .btn-primary { background: #F7E9D2; color: #0A1727; }
+  .hero-card .iconbtn {
+    width: 40px; height: 40px; border-radius: 50%;
+    background: rgba(255,255,255,.13); border: 1px solid rgba(255,255,255,.2);
+    color: #FBEFDF; display: flex; align-items: center; justify-content: center; flex: 0 0 40px; cursor: pointer;
+  }
+  .hero-card .stats { margin-left: auto; text-align: right; line-height: 1.35; }
+  .hero-card .stats div { font-size: 12px; opacity: .72; }
+
+  .search-box {
+    height: 48px; border-radius: 16px; background: var(--tarjeta);
+    border: 1px solid var(--borde); display: flex; align-items: center;
+    gap: 10px; padding: 0 14px; color: var(--muted); font-size: 15px;
+    margin-top: 16px; cursor: text;
+  }
+
+  .sec-title {
+    font-size: 13px; font-weight: 700; letter-spacing: .08em;
+    text-transform: uppercase; color: var(--muted);
+    display: flex; align-items: center; justify-content: space-between;
+    margin-top: 22px; margin-bottom: 10px;
+  }
+  .sec-title .link { letter-spacing: .02em; text-transform: none; font-size: 13px; color: var(--acento); font-weight: 600; cursor: pointer; }
+
+  .chips { display: flex; gap: 8px; flex-wrap: wrap; }
+  .chip {
+    height: 32px; padding: 0 13px; border-radius: 999px;
+    background: var(--tarjeta); border: 1px solid var(--borde);
+    font-size: 13px; color: var(--texto); display: inline-flex;
+    align-items: center; gap: 6px; font-weight: 500; cursor: pointer;
+    transition: all .15s;
+  }
+  .chip:hover { border-color: var(--acento); }
+  .chip.on { background: var(--texto); color: var(--fondo); border-color: var(--texto); }
+
+  .rowitem {
+    display: flex; align-items: center; gap: 13px;
+    padding: 10px 0; border-bottom: 1px solid var(--borde);
+  }
+  .rowitem:last-child { border-bottom: none; }
+  .rowitem .art {
+    width: 46px; height: 46px; border-radius: 13px; flex: 0 0 46px;
+    display: flex; align-items: center; justify-content: center;
+    font-family: Georgia, serif; font-size: 19px; color: #FBEFDF;
+    background: linear-gradient(150deg, var(--subrayado), #0A1A2A);
+  }
+  .rowitem .art.alt { background: linear-gradient(150deg, #6A5A93, #443668); }
+  .rowitem .art.alt2 { background: linear-gradient(150deg, #6E8A6B, #41563F); }
+  .rowitem .art.alt3 { background: linear-gradient(150deg, #B98B3E, #7A571E); }
+  .rowitem .tx { flex: 1; min-width: 0; }
+  .rowitem .t { font-size: 15px; font-weight: 600; letter-spacing: -.01em; }
+  .rowitem .s { font-size: 12.5px; color: var(--muted); margin-top: 2px; }
+  .rowitem .key {
+    font-size: 12px; font-weight: 700; color: var(--acorde);
+    background: var(--tarjeta); border-radius: 8px; padding: 4px 8px;
+    flex: 0 0 auto;
+  }
+
+  .nav-tabs {
+    display: flex; gap: 4px; margin-bottom: 20px;
+    border-bottom: 1px solid var(--borde); padding-bottom: 8px;
+  }
+  .nav-tab {
+    padding: 8px 14px; border-radius: 8px; font-size: 13px;
+    font-weight: 600; color: var(--muted); cursor: pointer;
+    transition: all .15s;
+  }
+  .nav-tab:hover { color: var(--texto); }
+  .nav-tab.on { color: var(--acento); background: var(--tarjeta); }
+</style>
+</head>
+<body data-theme="claro">
+<div class="app">
+  <aside class="sidebar">
+    <div class="header">
+      <h1><span class="short">VeD</span> Cancionero</h1>
+    </div>
+    <div class="theme-bar" id="theme-bar"></div>
+    <div class="nav-tabs" style="flex-direction:column;border-bottom:none;margin-bottom:12px;">
+      <div class="nav-tab on">🎵 Cancionero</div>
+      <div class="nav-tab">🔍 Buscar</div>
+      <div class="nav-tab">📋 Repertorios</div>
+      <div class="nav-tab">⚙️ Ajustes</div>
+    </div>
+    <button class="btn btn-primary" id="btn-new" style="width:100%;margin-bottom:12px;">+ Nueva canción</button>
+    <button class="btn btn-secondary" id="btn-misa" style="width:100%;">Modo misa</button>
+  </aside>
+
+  <main class="main">
+    <div class="inicio-wrap">
+      <div class="eyebrow"><span class="dot"></span>Domingo 27 · Tiempo Ordinario</div>
+
+      <div class="hero-card">
+        <div class="lbl">Tu próxima celebración</div>
+        <h3>Misa dominical</h3>
+        <div class="meta"><span>Hoy · 20:00</span><span>·</span><span>Sagrado Corazón</span></div>
+        <div class="row">
+          <button class="btn btn-primary btn-sm" style="height:40px;border-radius:12px;padding:0 15px;">
+            ▶ Iniciar modo misa
+          </button>
+          <div class="iconbtn" title="Ver hoja de misa">
+            <svg viewBox="0 0 24 24" width="17" height="17" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><path d="M9 6h11M9 12h11M9 18h11M4.5 6h.01M4.5 12h.01M4.5 18h.01"/></svg>
+          </div>
+          <div class="stats">
+            <div>6 canciones</div>
+            <div>22 min</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="search-box">
+        <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round"><circle cx="11" cy="11" r="6.6"/><path d="m16 16 4.2 4.2"/></svg>
+        <span>Buscar canción, autor o letra</span>
+      </div>
+
+      <div class="sec-title">Momentos de la misa <span class="link">Ver todos</span></div>
+      <div class="chips">
+        <span class="chip">Entrada</span>
+        <span class="chip">Penitencial</span>
+        <span class="chip">Gloria</span>
+        <span class="chip">Salmo</span>
+        <span class="chip">Aleluya</span>
+        <span class="chip">Ofertorio</span>
+        <span class="chip">Santo</span>
+        <span class="chip">Comunión</span>
+      </div>
+
+      <div class="sec-title">Seguir cantando <span class="link">Recientes</span></div>
+      <div>
+        <div class="rowitem">
+          <div class="art">S</div>
+          <div class="tx"><div class="t">Santo es el Señor</div><div class="s">Adapt. Taizé · Comunión · 4/4</div></div>
+          <span class="key">Sol</span>
+        </div>
+        <div class="rowitem">
+          <div class="art alt">M</div>
+          <div class="tx"><div class="t">Madre del silencio</div><div class="s">Anónimo · Mariana · 3/4</div></div>
+          <span class="key">Re</span>
+        </div>
+        <div class="rowitem">
+          <div class="art alt3">A</div>
+          <div class="tx"><div class="t">Aleluya, el Señor vive</div><div class="s">Comunidad · Aleluya · 4/4</div></div>
+          <span class="key">Do</span>
+        </div>
+      </div>
+    </div>
+  </main>
+</div>
+
+<script>
+  // Init theme bar for inicio.html
+  document.addEventListener('DOMContentLoaded', () => {
+    const bar = document.getElementById('theme-bar');
+    const themes = [
+      {id:'claro',label:'Claro'},{id:'crema',label:'Crema'},
+      {id:'sepia',label:'Sepia'},{id:'atardecer',label:'Atardecer'},
+      {id:'oscuro',label:'Oscuro'},{id:'misa',label:'Modo misa'}
+    ];
+    themes.forEach(t => {
+      const b = document.createElement('button');
+      b.className = 'theme-btn'; b.dataset.theme = t.id; b.textContent = t.label;
+      b.onclick = () => {
+        if (t.id === 'misa') { document.body.setAttribute('data-theme','misa'); }
+        else { document.body.setAttribute('data-theme', t.id); localStorage.setItem('ved_theme', t.id); }
+        document.querySelectorAll('.theme-btn').forEach(x => x.classList.toggle('active', x.dataset.theme === t.id));
+      };
+      bar.appendChild(b);
+    });
+    const saved = localStorage.getItem('ved_theme') || 'claro';
+    document.body.setAttribute('data-theme', saved);
+    const active = document.querySelector(`.theme-btn[data-theme="${saved}"]`);
+    if (active) active.classList.add('active');
+  });
+</script>
+</body>
+</html>

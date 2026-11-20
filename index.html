@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Cancionero VeD — Web</title>
+<link rel="stylesheet" href="estilos.css">
+</head>
+<body data-theme="claro">
+<div class="app">
+  <aside class="sidebar">
+    <div class="header">
+      <h1><span class="short">VeD</span> Cancionero</h1>
+    </div>
+
+    <div class="theme-bar" id="theme-bar"></div>
+
+    <div style="display:flex;gap:8px;margin-bottom:16px;flex-wrap:wrap;">
+      <button class="btn btn-primary" id="btn-new" style="flex:1;">+ Nueva canción</button>
+      <button class="btn btn-secondary" id="btn-misa" style="flex:1;">Modo misa</button>
+    </div>
+
+    <ul class="song-list" id="song-list"></ul>
+  </aside>
+
+  <main class="main">
+    <!-- Vista de canción -->
+    <div id="song-view"></div>
+
+    <!-- Formulario carga rápida (inline) -->
+    <div id="editor-form" style="display:none;max-width:800px;">
+      <h2 style="font-family:Georgia,serif;margin-bottom:16px;">Nueva canción (carga rápida)</h2>
+      <div class="form-group">
+        <label for="inp-titulo">Título</label>
+        <input type="text" id="inp-titulo" placeholder="Ej: Bendeciré al Señor">
+      </div>
+      <div class="form-group">
+        <label for="inp-tono">Tono</label>
+        <input type="text" id="inp-tono" placeholder="Ej: Re">
+      </div>
+      <div class="form-group">
+        <label for="inp-letra">Letra con acordes</label>
+        <textarea id="inp-letra" placeholder="[Re]Bendeciré al [Sol]Señor en todo [La]tiempo&#10;Mi alma se enorgullece en el [Sol]Señor"></textarea>
+        <div class="form-hint">
+          Usá <code>[Acorde]</code> antes de la sílaba donde entra el acorde.<br>
+          Una línea por verso. Líneas vacías separan estrofas.
+        </div>
+      </div>
+      <div style="display:flex;gap:8px;flex-wrap:wrap;">
+        <button class="btn btn-primary" id="btn-save">Guardar</button>
+        <button class="btn btn-ghost" id="btn-cancel">Cancelar</button>
+        <button class="btn btn-secondary" id="btn-open-syl">Editor de sílabas</button>
+      </div>
+    </div>
+
+    <!-- Editor de sílabas -->
+    <div id="syl-editor" style="display:none;max-width:900px;">
+      <h2 style="font-family:Georgia,serif;margin-bottom:16px;">Editor de sílabas</h2>
+      <div class="form-group">
+        <label for="syl-titulo">Título</label>
+        <input type="text" id="syl-titulo" placeholder="Ej: Todos te alabamos">
+      </div>
+      <div class="form-group">
+        <label for="syl-tono">Tono</label>
+        <input type="text" id="syl-tono" placeholder="Ej: Mi">
+      </div>
+
+      <div class="form-group">
+        <label>Líneas (una por verso)</label>
+        <textarea id="syl-input" rows="6" placeholder="Escribí la letra línea por línea.&#10;Podés usar guiones para melismas: Glo - o - ria"></textarea>
+        <div class="form-hint">Cada línea se convierte en sílabas. Usá guiones para marcar melismas.</div>
+      </div>
+      <button class="btn btn-secondary" id="btn-parse-lines">Convertir a sílabas</button>
+
+      <div id="syl-workspace" style="margin-top:20px;"></div>
+
+      <div style="margin-top:16px;display:flex;gap:8px;flex-wrap:wrap;align-items:center;">
+        <label style="font-size:13px;font-weight:600;color:var(--muted);">Acorde:</label>
+        <input type="text" id="syl-chord-input" placeholder="Re, Sol, La7..." style="width:100px;padding:6px;border:1px solid var(--borde);border-radius:6px;background:var(--fondo);color:var(--texto);">
+        <button class="btn btn-primary" id="btn-assign-chord">Asignar a sílaba seleccionada</button>
+        <button class="btn btn-danger" id="btn-remove-chord">Quitar</button>
+      </div>
+
+      <div style="margin-top:16px;display:flex;gap:8px;flex-wrap:wrap;">
+        <button class="btn btn-primary" id="btn-syl-save">Guardar canción</button>
+        <button class="btn btn-ghost" id="btn-syl-cancel">Cancelar</button>
+      </div>
+    </div>
+
+    <div style="margin-top:20px;display:flex;gap:8px;flex-wrap:wrap;">
+      <button class="btn btn-danger" id="btn-delete" style="display:none;">Eliminar canción</button>
+    </div>
+  </main>
+</div>
+
+<div class="toast" id="toast"></div>
+
+<script src="app.js"></script>
+</body>
+</html>

@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Cancionero VeD — Repertorios</title>
+<link rel="stylesheet" href="estilos.css">
+<style>
+  .rep-wrap { max-width: 900px; margin: 0 auto; }
+  .card { background: var(--tarjeta); border: 1px solid var(--borde); border-radius: 12px; padding: 15px; position: relative; overflow: hidden; margin-bottom: 12px; }
+  .card .accent { position: absolute; left: 0; top: 14px; bottom: 14px; width: 3.5px; border-radius: 3px; background: var(--acento); }
+  .badge { font-size: 10.5px; font-weight: 700; letter-spacing: .04em; padding: 3px 7px; border-radius: 6px; background: var(--acento); color: var(--fondo); }
+  .rowitem { display: flex; align-items: center; gap: 13px; padding: 10px 0; border-bottom: 1px solid var(--borde); }
+  .rowitem .art { width: 40px; height: 40px; border-radius: 12px; flex: 0 0 40px; display: flex; align-items: center; justify-content: center; color: #FBEFDF; background: linear-gradient(150deg, var(--subrayado), #0A1A2A); }
+  .rowitem .art.alt { background: linear-gradient(150deg, #6A5A93, #443668); }
+  .rowitem .art.alt2 { background: linear-gradient(150deg, #6E8A6B, #41563F); }
+  .rowitem .art.alt3 { background: linear-gradient(150deg, #B98B3E, #7A571E); }
+  .rowitem .tx { flex: 1; min-width: 0; }
+  .rowitem .t { font-size: 14.5px; font-weight: 600; }
+  .rowitem .s { font-size: 12.5px; color: var(--muted); margin-top: 2px; }
+  .sec-title { font-size: 13px; font-weight: 700; letter-spacing: .08em; text-transform: uppercase; color: var(--muted); margin: 20px 0 8px; }
+  .chip { height: 28px; padding: 0 10px; border-radius: 999px; background: var(--fondo); border: 1px solid var(--borde); font-size: 12px; color: var(--muted); display: inline-flex; align-items: center; gap: 4px; }
+  .offline { margin-top: 14px; padding: 12px 15px; border: 1px dashed var(--borde); border-radius: 16px; display: flex; align-items: center; gap: 11px; color: var(--muted); font-size: 12.5px; line-height: 1.45; }
+  .topbar { display: flex; align-items: center; justify-content: space-between; height: 46px; margin-bottom: 4px; }
+  .iconbtn { width: 38px; height: 38px; border-radius: 50%; background: var(--tarjeta); border: 1px solid var(--borde); display: flex; align-items: center; justify-content: center; color: var(--muted); flex: 0 0 38px; cursor: pointer; }
+  .nav-tab { padding: 8px 14px; border-radius: 8px; font-size: 13px; font-weight: 600; color: var(--muted); cursor: pointer; }
+  .nav-tab.on { color: var(--acento); background: var(--tarjeta); }
+  .nav-tabs { display: flex; gap: 4px; margin-bottom: 20px; border-bottom: 1px solid var(--borde); padding-bottom: 8px; flex-wrap: wrap; }
+</style>
+</head>
+<body data-theme="claro">
+<div class="app">
+  <aside class="sidebar">
+    <div class="header"><h1><span class="short">VeD</span> Cancionero</h1></div>
+    <div class="theme-bar" id="theme-bar"></div>
+    <div class="nav-tabs" style="flex-direction:column;border-bottom:none;margin-bottom:12px;">
+      <div class="nav-tab">🎵 Cancionero</div>
+      <div class="nav-tab">🔍 Buscar</div>
+      <div class="nav-tab on">📋 Repertorios</div>
+      <div class="nav-tab">⚙️ Ajustes</div>
+    </div>
+    <button class="btn btn-primary" id="btn-new" style="width:100%;margin-bottom:12px;">+ Nuevo repertorio</button>
+    <button class="btn btn-secondary" id="btn-misa" style="width:100%;">Modo misa</button>
+  </aside>
+  <main class="main">
+    <div class="rep-wrap">
+      <div class="topbar">
+        <div style="font-size:24px;font-weight:600;">Repertorios</div>
+        <div class="iconbtn" style="background:var(--acento);border-color:var(--acento);color:var(--fondo);">+</div>
+      </div>
+      <div class="sec-title" style="margin-top:4px;">Hoy</div>
+      <div class="card">
+        <div class="accent"></div>
+        <div style="display:flex;align-items:flex-start;justify-content:space-between;gap:10px;">
+          <div><div style="font-family:Georgia,serif;font-size:19px;">Misa dominical</div><div style="font-size:12.5px;color:var(--muted);margin-top:3px;">20:00 · Sagrado Corazón</div></div>
+          <span class="badge">En 3 h</span>
+        </div>
+        <div style="display:flex;align-items:center;gap:8px;margin-top:12px;">
+          <span class="chip">6 canciones</span><span class="chip">22 min</span><span class="chip" style="margin-left:auto;color:var(--acento);cursor:pointer;">Abrir ›</span>
+        </div>
+      </div>
+      <div class="sec-title">Próximos</div>
+      <div class="rowitem"><div class="art alt"><svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round"><rect x="4" y="5.5" width="16" height="14" rx="3"/><path d="M8 10h8M8 14h5"/></svg></div><div class="tx"><div class="t">Misa de la mañana</div><div class="s">Dom 27 · 11:00 · 5 canciones</div></div><div style="color:var(--muted);font-size:18px;">›</div></div>
+      <div class="rowitem"><div class="art alt2"><svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round"><path d="M12 20s-7-4.5-7-9.2A4 4 0 0 1 12 7.6a4 4 0 0 1 7 3.2C19 15.5 12 20 12 20z"/></svg></div><div class="tx"><div class="t">Encuentro de oración</div><div class="s">Lun 28 · 19:30 · 8 canciones</div></div><div style="color:var(--muted);font-size:18px;">›</div></div>
+      <div class="rowitem"><div class="art alt3"><svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round"><path d="M8 4h8v4a4 4 0 0 1-8 0z"/><path d="M12 12v7"/><path d="M9 20h6"/></svg></div><div class="tx"><div class="t">Boda de Ana y José</div><div class="s">Sáb 2 nov · 17:00 · 7 canciones</div></div><div style="color:var(--muted);font-size:18px;">›</div></div>
+      <div class="sec-title">Anteriores</div>
+      <div class="rowitem"><div class="art"><svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round"><circle cx="12" cy="12" r="8"/><path d="M12 8v4.3l2.7 1.7"/></svg></div><div class="tx"><div class="t">Misa dominical</div><div class="s">20 oct · 6 canciones · 22 min</div></div><div style="color:var(--muted);font-size:18px;">›</div></div>
+      <div class="rowitem"><div class="art alt2"><svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round"><path d="M12 20s-7-4.5-7-9.2A4 4 0 0 1 12 7.6a4 4 0 0 1 7 3.2C19 15.5 12 20 12 20z"/></svg></div><div class="tx"><div class="t">Rosario en familia</div><div class="s">17 oct · 4 canciones</div></div><div style="color:var(--muted);font-size:18px;">›</div></div>
+      <div class="offline"><svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M5.5 16.5A3.5 3.5 0 0 1 6 9.6a5.5 5.5 0 0 1 10.6 1.3 3 3 0 0 1 .4 5.6"/><path d="M5.5 16.5H18M9 20h6"/></svg><div>Tus repertorios se abren sin conexión.</div></div>
+    </div>
+  </main>
+</div>
+<script>
+  document.addEventListener('DOMContentLoaded', () => {
+    const bar = document.getElementById('theme-bar');
+    ['Claro','Crema','Sepia','Atardecer','Oscuro','Modo misa'].forEach((l,i) => {
+      const ids = ['claro','crema','sepia','atardecer','oscuro','misa'];
+      const b = document.createElement('button'); b.className='theme-btn'; b.dataset.theme=ids[i]; b.textContent=l;
+      b.onclick = () => { document.body.setAttribute('data-theme', ids[i]); document.querySelectorAll('.theme-btn').forEach(x=>x.classList.toggle('active',x.dataset.theme===ids[i])); };
+      bar.appendChild(b);
+    });
+    const saved = localStorage.getItem('ved_theme')||'claro';
+    document.body.setAttribute('data-theme', saved);
+    const a = document.querySelector(`.theme-btn[data-theme="${saved}"]`); if(a) a.classList.add('active');
+  });
+</script>
+</body>
+</html>
